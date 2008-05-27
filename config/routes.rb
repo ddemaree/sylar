@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   
+  map.resources :journal_entries
   map.resources :clients, :has_many => [:projects]
   
   map.resources :projects do |project|

@@ -1,2 +1,20 @@
-<h1>JournalEntries#edit</h1>
-<p>Find me in app/views/journal_entries/edit.html.erb</p>
+<div class="titlebar">
+	<p class="back"><%= link_to "&larr; Back to journal", journal_entries_path %></p>
+	<h2><%= @journal_entry.new_record? ? "New" : "Edit" %> Entry</h2>
+</div>
+<div class="main">
+	<%= error_messages_for :entry %>
+	<% form_for @journal_entry do |f| %>
+		<% fieldset :dl => true do %>
+			<%= f.labeled_collection_select_with_error :client_id, Client.find(:all), :id, :name, :include_blank => true %>
+			<%= f.labeled_collection_select_with_error :project_id, Project.find(:all), :id, :name, :include_blank => true %>
+			
+			<%= f.labeled_date_select :date %>
+			<%= f.labeled_text_field :hours %>
+			<%= f.labeled_text_area :notes %>
+		<% end %>
+		<p class="form_actions">
+			<button type="submit" class="save_changes">Save Changes</button>
+		</p>
+	<% end %>
+</div>

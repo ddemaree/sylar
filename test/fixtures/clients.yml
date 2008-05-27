@@ -1,11 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
-  contact_name: MyString
-  contact_email: MyString
+practical:
+  name: Practical Creative & Code
+  contact_name: David Demaree
+  contact_email: david@practical.cc
 
-two:
-  name: MyString
-  contact_name: MyString
-  contact_email: MyString
+blue_box:
+  name: Blue Box Group LLC
+  contact_name: Jesse Proudman
+  contact_email: jesse@blueboxgrp.com

@@ -1,2 +1,26 @@
-<h1>JournalEntries#index</h1>
-<p>Find me in app/views/journal_entries/index.html.erb</p>
+<div class="titlebar">
+	<h2>Journal</h2>
+	<ul class="page_actions nolist">
+		<li><%= link_to "New entry", new_journal_entry_path, :class => "action new" %></li>
+	</ul>
+</div>
+<div class="main">
+<table id="entries_index" class="list_view" cellspacing="0" border="0">
+	<tr class="header_row">
+		<th>Date</th>
+		<th>Client</th>
+		<th>Project</th>
+		<th>Hours</th>
+		<th>&nbsp;</th>
+	</tr>
+	<% content_tags_for :tr, @journal_entries do |entry| %>
+		<td><%= entry.date %></td>
+		<td><%= entry.client %></td>
+		<td><%= entry.project %></td>
+		<td><%= entry.hours %></td>
+		<td class="actions">
+			<%= link_to "Edit", [:edit, entry], :class => "action edit" %>
+		</td>
+	<% end %>
+</table>
+</div>

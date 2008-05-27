@@ -1,0 +1,6 @@
+  [4;36;1mClient Load (0.000563)[0m   [0;1mSELECT * FROM "clients" WHERE ("clients"."id" = 729170316) [0m
+  [4;35;1mProject Load (0.000375)[0m   [0mSELECT * FROM "projects" WHERE ("projects"."id" = 773534621) [0m
+  [4;36;1mClient Load (0.000566)[0m   [0;1mSELECT * FROM "clients" WHERE ("clients"."id" = 729170316) [0m
+  [4;35;1mProject Load (0.000378)[0m   [0mSELECT * FROM "projects" WHERE ("projects"."id" = 773534621) [0m
+  [4;36;1mClient Load (0.000680)[0m   [0;1mSELECT * FROM "clients" WHERE ("clients"."id" = 729170316) [0m
+  [4;35;1mProject Load (0.000379)[0m   [0mSELECT * FROM "projects" WHERE ("projects"."id" = 773534621) [0m
