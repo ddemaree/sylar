@@ -1,0 +1,693 @@
+  [4;36;1mSQL (0.000350)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.021870)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (0.003357)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.002335)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000503)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.000170)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000111)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.000117)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateJournalEntries (20080527125407)
+  [4;36;1mSQL (0.000117)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.002422)[0m   [0mCREATE TABLE "journal_entries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "project_id" integer DEFAULT NULL NULL, "notes" text DEFAULT NULL NULL, "start_time" time DEFAULT NULL NULL, "end_time" time DEFAULT NULL NULL, "date" date DEFAULT NULL NULL, "billable" boolean DEFAULT NULL NULL, "rate" integer DEFAULT NULL NULL, "created_at" datetime DEFAULT NULL NULL, "updated_at" datetime DEFAULT NULL NULL) [0m
+  [4;36;1mSQL (0.002090)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20080527125407')[0m
+Migrating to CreateProjects (20080527125501)
+  [4;35;1mSQL (0.000351)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.002315)[0m   [0;1mCREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "client_id" integer DEFAULT NULL NULL, "name" varchar(255) DEFAULT NULL NULL, "rate" integer DEFAULT NULL NULL, "created_at" datetime DEFAULT NULL NULL, "updated_at" datetime DEFAULT NULL NULL) [0m
+  [4;35;1mSQL (0.002032)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20080527125501')[0m
+Migrating to CreateClients (20080527125537)
+  [4;36;1mSQL (0.000432)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.002416)[0m   [0mCREATE TABLE "clients" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT NULL NULL, "contact_name" varchar(255) DEFAULT NULL NULL, "contact_email" varchar(255) DEFAULT NULL NULL, "created_at" datetime DEFAULT NULL NULL, "updated_at" datetime DEFAULT NULL NULL) [0m
+  [4;36;1mSQL (0.002582)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20080527125537')[0m
+  [4;35;1mSQL (0.000453)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000506)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.000091)[0m   [0mPRAGMA index_list("clients")[0m
+  [4;36;1mSQL (0.000066)[0m   [0;1mPRAGMA index_list("journal_entries")[0m
+  [4;35;1mSQL (0.000068)[0m   [0mPRAGMA index_list("projects")[0m
+  [4;36;1mSQL (0.000693)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.000340)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000226)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.000227)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateJournalEntries (20080527125407)
+  [4;36;1mSQL (0.000227)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateProjects (20080527125501)
+  [4;35;1mSQL (0.000233)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateClients (20080527125537)
+  [4;36;1mSQL (0.000224)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20080527125907)
+  [4;35;1mSQL (0.000225)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000124)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.000318)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.003212)[0m   [0;1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "login" varchar(40) DEFAULT NULL NULL, "name" varchar(100) DEFAULT '' NULL, "email" varchar(100) DEFAULT NULL NULL, "crypted_password" varchar(40) DEFAULT NULL NULL, "salt" varchar(40) DEFAULT NULL NULL, "created_at" datetime DEFAULT NULL NULL, "updated_at" datetime DEFAULT NULL NULL, "remember_token" varchar(40) DEFAULT NULL NULL, "remember_token_expires_at" datetime DEFAULT NULL NULL) [0m
+  [4;35;1mSQL (0.002590)[0m   [0mCREATE UNIQUE INDEX "index_users_on_login" ON "users" ("login")[0m
+  [4;36;1mSQL (0.002276)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20080527125907')[0m
+  [4;35;1mSQL (0.000544)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000584)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.000101)[0m   [0mPRAGMA index_list("clients")[0m
+  [4;36;1mSQL (0.000076)[0m   [0;1mPRAGMA index_list("journal_entries")[0m
+  [4;35;1mSQL (0.000071)[0m   [0mPRAGMA index_list("projects")[0m
+  [4;36;1mSQL (0.000156)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;35;1mSQL (0.000146)[0m   [0mPRAGMA index_info('index_users_on_login')[0m
+
+
+Processing JournalEntriesController#index (for 127.0.0.1 at 2008-05-27 08:00:58) [GET]
+  Session ID: 3318070ee6e79fd5b05234cc9429931c
+  Parameters: {"action"=>"index", "controller"=>"journal_entries"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00111 (904 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/journal_entries]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:58) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhUvam91cm5hbF9lbnRyaWVzIgpmbGFzaElDOidB%0AY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--133eabbc36edb9415e30a5ac028e4da8b3542b17
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00056 (1776 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:58) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00058 (1721 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:58) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00053 (1890 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:58) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00051 (1949 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:58) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00050 (1996 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:58) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00051 (1964 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:58) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00048 (2087 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:58) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00049 (2036 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:58) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00049 (2037 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:58) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00051 (1964 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:58) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00052 (1933 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:58) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00052 (1919 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:59) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00050 (2011 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:59) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00051 (1949 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:59) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00066 (1524 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:00:59) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00051 (1949 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing JournalEntriesController#index (for 127.0.0.1 at 2008-05-27 08:01:33) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhIvc2Vzc2lvbnMvbmV3IgpmbGFzaElDOidBY3Rp%0Ab25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--f4098cc212e4df2250e3a7368542132a88831ef6
+  Parameters: {"action"=>"index", "controller"=>"journal_entries"}
+Redirected to http://sylar.local.practical.cc/sessions/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00052 (1923 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/journal_entries]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:01:33) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhUvam91cm5hbF9lbnRyaWVzIgpmbGFzaElDOidB%0AY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--133eabbc36edb9415e30a5ac028e4da8b3542b17
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+
+
+ActionView::TemplateError (session_url failed to generate from {:controller=>"sessions", :action=>"show"} - you may have ambiguous routes, or you may need to supply additional parameters for this route.  content_url has the following required parameters: ["sessions", :id] - are they all satisfied?) on line #3 of sessions/new.html.erb:
+1: <h1>Log In</h1>
+2: 
+3: <% form_tag session_path do -%>
+4: <p><label for="login">Login</label><br/>
+5: <%= text_field_tag 'login', @login %></p>
+6: 
+
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/routing/route_set.rb:379:in `raise_named_route_error'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/routing/route_set.rb:339:in `generate'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/url_rewriter.rb:131:in `rewrite_path'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/url_rewriter.rb:110:in `rewrite_url'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/url_rewriter.rb:88:in `rewrite'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/base.rb:620:in `url_for'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_view/helpers/url_helper.rb:71:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_view/helpers/url_helper.rb:71:in `url_for'
+    (eval):17:in `session_path'
+    /Users/david/Rails/internal/sylar/app/views/sessions/new.html.erb:3:in `_run_erb_47app47views47sessions47new46html46erb'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_view/base.rb:338:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_view/base.rb:338:in `execute'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_view/template_handlers/compilable.rb:29:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_view/template_handlers/compilable.rb:29:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_view/template.rb:35:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_view/template.rb:22:in `render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_view/base.rb:245:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/base.rb:1107:in `render_for_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/base.rb:840:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/layout.rb:259:in `render_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/benchmarking.rb:51:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.0.991/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/benchmarking.rb:51:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/base.rb:1156:in `default_render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/filters.rb:580:in `call_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/caching/sql_cache.rb:13:in `passenger_orig_perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.0.991/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.0.991/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/caching/sql_cache.rb:12:in `passenger_orig_perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:145:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/base.rb:528:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/base.rb:528:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/session_management.rb:130:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/base.rb:389:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:304:in `process_request'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:180:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:320:in `start_request_handler'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:282:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:280:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:280:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:278:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:278:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:114:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:147:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:278:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:273:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:273:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:114:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:104:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:106:in `spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:102:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:102:in `spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:183:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/bin/passenger-spawn-server:32
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:02:17) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIhUvam91cm5hbF9lbnRyaWVzIgpmbGFzaElDOidB%0AY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--133eabbc36edb9415e30a5ac028e4da8b3542b17
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+Completed in 0.00280 (357 reqs/sec) | Rendering: 0.00099 (35%) | DB: 0.00000 (0%) | 200 OK [http://sylar.local.practical.cc/sessions/new]
+
+
+Processing UsersController#new (for 127.0.0.1 at 2008-05-27 08:02:23) [GET]
+  Session ID: BAh7CDoMY3NyZl9pZCIlYjg0ODUwNjlmMTc3MDc0NGZlMzQ5ODRlZGExYmEz%0AODc6DnJldHVybl90byIVL2pvdXJuYWxfZW50cmllcyIKZmxhc2hJQzonQWN0%0AaW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7AA%3D%3D--b27c447ba2aab139f531a91756849b1f84384b2a
+  Parameters: {"action"=>"new", "controller"=>"users"}
+Redirected to http://sylar.local.practical.cc/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00051 (1941 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://sylar.local.practical.cc/users/new]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2008-05-27 08:02:23) [GET]
+  Session ID: BAh7CDoMY3NyZl9pZCIlYjg0ODUwNjlmMTc3MDc0NGZlMzQ5ODRlZGExYmEz%0AODc6DnJldHVybl90byIPL3VzZXJzL25ldyIKZmxhc2hJQzonQWN0aW9uQ29u%0AdHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7AA%3D%3D--341659fe60981c32c8d639accf266126a99d4023
+  Parameters: {}
+
+
+ActionController::MethodNotAllowed (Only get requests are allowed.):
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/routing/recognition_optimisation.rb:65:in `recognize_path'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:304:in `process_request'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:180:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:320:in `start_request_handler'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:282:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:280:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:280:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:278:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:278:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:114:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:147:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:278:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:273:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:273:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:114:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:104:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:106:in `spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:102:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:102:in `spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:183:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/bin/passenger-spawn-server:32
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/templates/rescues/layout.erb (method_not_allowed)
+  [4;36;1mSQL (0.000742)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.000184)[0m   [0mSELECT "login" FROM "users" WHERE (LOWER("users".login) = 'ddemaree') [0m
+  [4;36;1mSQL (0.000072)[0m   [0;1mSELECT "email" FROM "users" WHERE (LOWER("users".email) = 'david@practical.cc') [0m
+  [4;35;1mUser Create (0.000582)[0m   [0mINSERT INTO "users" ("name", "salt", "updated_at", "crypted_password", "remember_token_expires_at", "remember_token", "login", "email", "created_at") VALUES('David Demaree', 'a13dfcbb373e72faceb95dd1df791c23bc5a7863', '2008-05-27 13:03:22', '6262c009a6005793b6ecfd9a87a72f4b6ea71b44', NULL, NULL, 'ddemaree', 'david@practical.cc', '2008-05-27 13:03:22')[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2008-05-27 08:03:27) [GET]
+  Session ID: BAh7CDoMY3NyZl9pZCIlYjg0ODUwNjlmMTc3MDc0NGZlMzQ5ODRlZGExYmEz%0AODc6DnJldHVybl90byIPL3VzZXJzL25ldyIKZmxhc2hJQzonQWN0aW9uQ29u%0AdHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7AA%3D%3D--341659fe60981c32c8d639accf266126a99d4023
+  Parameters: {}
+
+
+ActionController::MethodNotAllowed (Only get requests are allowed.):
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/routing/recognition_optimisation.rb:65:in `recognize_path'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:304:in `process_request'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:180:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:320:in `start_request_handler'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:282:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:280:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:280:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:278:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:278:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:114:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:147:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:278:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:273:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:273:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:114:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:104:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:106:in `spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:102:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:102:in `spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:183:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/bin/passenger-spawn-server:32
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/templates/rescues/layout.erb (method_not_allowed)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2008-05-27 08:03:29) [GET]
+  Session ID: BAh7CDoMY3NyZl9pZCIlYjg0ODUwNjlmMTc3MDc0NGZlMzQ5ODRlZGExYmEz%0AODc6DnJldHVybl90byIPL3VzZXJzL25ldyIKZmxhc2hJQzonQWN0aW9uQ29u%0AdHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7AA%3D%3D--341659fe60981c32c8d639accf266126a99d4023
+  Parameters: {}
+
+
+ActionController::MethodNotAllowed (Only get requests are allowed.):
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/routing/recognition_optimisation.rb:65:in `recognize_path'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:304:in `process_request'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:180:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:320:in `start_request_handler'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:282:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:280:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:280:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:278:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:278:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:114:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:147:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:278:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:273:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:273:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:114:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:104:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:106:in `spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:102:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:102:in `spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:183:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/bin/passenger-spawn-server:32
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/templates/rescues/layout.erb (method_not_allowed)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2008-05-27 08:03:44) [GET]
+  Session ID: BAh7CDoMY3NyZl9pZCIlYjg0ODUwNjlmMTc3MDc0NGZlMzQ5ODRlZGExYmEz%0AODc6DnJldHVybl90byIPL3VzZXJzL25ldyIKZmxhc2hJQzonQWN0aW9uQ29u%0AdHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7AA%3D%3D--341659fe60981c32c8d639accf266126a99d4023
+  Parameters: {}
+
+
+ActionController::MethodNotAllowed (Only get requests are allowed.):
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/routing/recognition_optimisation.rb:65:in `recognize_path'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:304:in `process_request'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:180:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:320:in `start_request_handler'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:282:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:280:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:280:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:278:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:278:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:114:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:147:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:278:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:273:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:273:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:114:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:104:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:106:in `spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:102:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:102:in `spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:183:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/bin/passenger-spawn-server:32
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/templates/rescues/layout.erb (method_not_allowed)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2008-05-27 08:03:54) [GET]
+  Session ID: BAh7CDoMY3NyZl9pZCIlYjg0ODUwNjlmMTc3MDc0NGZlMzQ5ODRlZGExYmEz%0AODc6DnJldHVybl90byIPL3VzZXJzL25ldyIKZmxhc2hJQzonQWN0aW9uQ29u%0AdHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7AA%3D%3D--341659fe60981c32c8d639accf266126a99d4023
+  Parameters: {}
+
+
+ActionController::MethodNotAllowed (Only get requests are allowed.):
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/routing/recognition_optimisation.rb:65:in `recognize_path'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:304:in `process_request'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:180:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:320:in `start_request_handler'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:282:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:280:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:280:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:278:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:278:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:114:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:147:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:278:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:273:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:273:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:114:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:104:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:106:in `spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:102:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:102:in `spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:183:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/bin/passenger-spawn-server:32
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/templates/rescues/layout.erb (method_not_allowed)
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-05-27 08:04:03) [GET]
+  Session ID: BAh7CDoMY3NyZl9pZCIlYjg0ODUwNjlmMTc3MDc0NGZlMzQ5ODRlZGExYmEz%0AODc6DnJldHVybl90byIPL3VzZXJzL25ldyIKZmxhc2hJQzonQWN0aW9uQ29u%0AdHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7AA%3D%3D--341659fe60981c32c8d639accf266126a99d4023
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+Completed in 0.00516 (193 reqs/sec) | Rendering: 0.00269 (52%) | DB: 0.00000 (0%) | 200 OK [http://sylar.local.practical.cc/session/new]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2008-05-27 08:04:09) [POST]
+  Session ID: BAh7CDoMY3NyZl9pZCIlYjg0ODUwNjlmMTc3MDc0NGZlMzQ5ODRlZGExYmEz%0AODc6DnJldHVybl90byIPL3VzZXJzL25ldyIKZmxhc2hJQzonQWN0aW9uQ29u%0AdHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7AA%3D%3D--341659fe60981c32c8d639accf266126a99d4023
+  Parameters: {"commit"=>"Log in", "authenticity_token"=>"5b92e7dd8122db5ca97a7231d79a3364f41789d3", "action"=>"create", "controller"=>"sessions", "password"=>"kelsey", "login"=>"ddemaree"}
+Cookie set: auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT
+  [4;36;1mUser Load (0.000404)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."login" = 'ddemaree') LIMIT 1[0m
+Cookie set: auth_token=; path=/
+Redirected to http://sylar.local.practical.cc/users/new
+Completed in 0.01738 (57 reqs/sec) | DB: 0.00040 (2%) | 302 Found [http://sylar.local.practical.cc/session]
+
+
+Processing UsersController#new (for 127.0.0.1 at 2008-05-27 08:04:09) [GET]
+  Session ID: BAh7CToMY3NyZl9pZCIlYjg0ODUwNjlmMTc3MDc0NGZlMzQ5ODRlZGExYmEz%0AODc6DnJldHVybl90bzA6DHVzZXJfaWRpBiIKZmxhc2hJQzonQWN0aW9uQ29u%0AdHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsGOgtub3RpY2UiG0xvZ2dlZCBp%0AbiBzdWNjZXNzZnVsbHkGOgpAdXNlZHsGOwlG--12b4e430fb5af0547b117ceccbf919dc7f6f942e
+  Parameters: {"action"=>"new", "controller"=>"users"}
+  [4;35;1mUser Load (0.000333)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering users/new
+Completed in 0.14827 (6 reqs/sec) | Rendering: 0.00314 (2%) | DB: 0.00033 (0%) | 200 OK [http://sylar.local.practical.cc/users/new]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2008-05-27 08:04:18) [GET]
+  Session ID: BAh7CToMY3NyZl9pZCIlYjg0ODUwNjlmMTc3MDc0NGZlMzQ5ODRlZGExYmEz%0AODc6DnJldHVybl90bzA6DHVzZXJfaWRpBiIKZmxhc2hJQzonQWN0aW9uQ29u%0AdHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsGOgtub3RpY2UiG0xvZ2dlZCBp%0AbiBzdWNjZXNzZnVsbHkGOgpAdXNlZHsGOwlU--30c5e219d144087ba62fdf4ce6b5991c66127a16
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.000294)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+
+
+ActionController::UnknownAction (No action responded to index):
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/filters.rb:580:in `call_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/caching/sql_cache.rb:13:in `passenger_orig_perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.0.991/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.0.991/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/caching/sql_cache.rb:12:in `passenger_orig_perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:145:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/base.rb:528:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/base.rb:528:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/session_management.rb:130:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/base.rb:389:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:304:in `process_request'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/request_handler.rb:180:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:320:in `start_request_handler'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:282:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:280:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:280:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:278:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:278:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:114:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/application_spawner.rb:147:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:278:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:273:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:273:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:114:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `fork'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:108:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/framework_spawner.rb:104:in `start'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:106:in `spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:102:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:102:in `spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/spawn_manager.rb:183:in `handle_spawn_application'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `__send__'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:291:in `main_loop'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/lib/passenger/abstract_server.rb:147:in `start_synchronously'
+    /usr/local/lib/ruby/gems/1.8/gems/passenger-1.0.5/bin/passenger-spawn-server:32
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.0.991/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing JournalEntriesController#index (for 127.0.0.1 at 2008-05-27 08:04:24) [GET]
+  Session ID: BAh7CToMY3NyZl9pZCIlYjg0ODUwNjlmMTc3MDc0NGZlMzQ5ODRlZGExYmEz%0AODc6DnJldHVybl90bzA6DHVzZXJfaWRpBiIKZmxhc2hJQzonQWN0aW9uQ29u%0AdHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7AA%3D%3D--d87a45be490df24b2060b5e88b78fb17e59ef897
+  Parameters: {"action"=>"index", "controller"=>"journal_entries"}
+  [4;35;1mUser Load (0.000292)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering journal_entries/index
+Completed in 0.01058 (94 reqs/sec) | Rendering: 0.00070 (6%) | DB: 0.00029 (2%) | 200 OK [http://sylar.local.practical.cc/journal_entries]
+
+
+Processing ClientsController#index (for 127.0.0.1 at 2008-05-27 08:05:28) [GET]
+  Session ID: BAh7CToMY3NyZl9pZCIlYjg0ODUwNjlmMTc3MDc0NGZlMzQ5ODRlZGExYmEz%0AODc6DnJldHVybl90bzA6DHVzZXJfaWRpBiIKZmxhc2hJQzonQWN0aW9uQ29u%0AdHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7AA%3D%3D--d87a45be490df24b2060b5e88b78fb17e59ef897
+  Parameters: {"action"=>"index", "controller"=>"clients"}
+  [4;36;1mUser Load (0.000296)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering clients/index
+Completed in 0.01076 (92 reqs/sec) | Rendering: 0.00071 (6%) | DB: 0.00030 (2%) | 200 OK [http://sylar.local.practical.cc/clients]
