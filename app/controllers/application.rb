@@ -19,6 +19,11 @@ class ApplicationController < ActionController::Base
     JournalEntry.current_user = current_user if logged_in?
   end
   
+  def section_name
+    controller_name.to_sym
+  end
+  helper_method :section_name
+  
   def system_message
     flash[:message] || flash[:alert] || params[:system_message]
   end

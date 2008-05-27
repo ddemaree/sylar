@@ -5,7 +5,7 @@ module JournalEntriesHelper
     #trackables.collect { |t| [(t.subject_type == "Project" ? "-   #{t.subject_name}" : t.to_s), t.id]  }
     
     returning([]) do |options|
-      Client.find(:all, :order => "name ASC").each do |client|
+      Client.active(:order => "name ASC").each do |client|
         options << [client.name, client.trackable.id]
         client.projects.each do |project|
           options << [" - #{project.name}", project.trackable.id]

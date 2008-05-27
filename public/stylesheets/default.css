@@ -1,15 +1,9 @@
 /* @override http://sylar.local.practical.cc/stylesheets/default.css */
 
 @import url(lib/baseline.css);
+@import url(lib/forms.css);
 
-#container .titlebar {
-	background: #def;
-	padding: 16px;
-}
 
-#container .main {
-	padding: 16px;
-}
 
 #dialog {
 	min-width: 400px;
@@ -24,43 +18,135 @@
 	text-decoration: none;
 }
 
-button {
-	padding: 4px;
+
+
+/* @group Header */
+
+#header {
+	background: #eb7600;
+	color: #222;
 }
+
+#header h1 {
+	padding: 10px 16px;
+	margin: 0;
+	font-size: 16px;
+	font-weight: normal;
+	line-height: 16px;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.4);
+	float: left;
+}
+
+#header .main_navigation {
+	float: right;
+	padding-top: 14px;
+	padding-right: 6px;
+}
+
+#header .main_navigation li {
+	display: inline;
+}
+
+#header .main_navigation a {
+	padding: 2px 10px;
+	float: left;
+	background: #a45200;
+	margin-right: 5px;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	text-decoration: none;
+	color: #cab57d;
+}
+
+#header .main_navigation .active a {
+	background: #fff;
+	color: #000;
+}
+
+/* @end */
+
+/* @group Page Structure */
+
+#container .titlebar {
+	background: #fff;
+	padding: 4px 6px 10px;
+	position: relative;
+	border-bottom: 2px solid #000;
+	margin: 16px 10px 0;
+}
+
+#container .titlebar h2 {
+	font-weight: normal;
+	margin: 0;
+	font-size: 18px;
+	line-height: 18px;
+}
+
+#container .titlebar .page_actions {
+	position: absolute;
+	right: 22px;
+	top: 4px;
+}
+
+#container .main {
+	padding: 16px;
+}
+
+/* @end */
+
+/* @group Tables */
+
+table.list_view {
+	width: 100%;
+}
+
+table.list_view td,
+table.list_view th {
+	border-bottom: 1px solid #c7e0f9;
+	padding: 2px 0;
+}
+
+table.list_view .actions {
+	text-align: right;
+}
+
+table.list_view .header_row th {
+	color: #aaa;
+	text-transform: uppercase;
+	font-size: 11px;
+}
+
+/* @end */
+
+/* @group Inline New Entry Form */
 
 #add_new_entry {
-	margin-bottom: 20px;
-	width: 540px;
-}
-
-#dialog #add_new_entry {
-	-webkit-box-shadow: 6px 6px 12px rgba(0,0,0,0.4);
+	/*width: 640px;*/
+	background: #def;
+	margin: 0 10px;
+	padding: 8px 12px;
 }
 
 #add_new_entry h3 {
 	font-size: 16px;
-	padding: 6px 8px 3px;
-	background: #f60;
-	color: #fff;
-	-webkit-border-top-left-radius: 6px;
+	line-height: 16px;
+	padding-bottom: 10px;
+	padding-top: 6px;
 	font-weight: normal;
-	text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
 }
 
 #add_new_entry form {
-	border: 2px solid #f60;
-	background: #fff;
 	padding-bottom: 8px;
 }
 
 #add_new_entry table {
 	width: 100%;
-	border-spacing: 8px 4px;
+	border-spacing: 0 4px;
 	margin-top: 4px;
 }
 
 #add_new_entry table textarea {
-	width: 518px;
+	width: 99%;
 	height: 60px;
 }
 
@@ -85,14 +171,15 @@ button {
 	margin: 0;
 	padding: 4px 8px;
 	float: right;
-	background: #fff;
+	background: #def;
 }
 
 #add_new_entry #extras {
 	border: 1px solid #666;
 	border-width: 0 1px 1px 0;
-	margin: 0px 40px 4px 8px;
+	margin: 0px 40px 4px 2px;
 	padding: 8px;
+	padding-left: 0;
 }
 
 #add_new_entry #extras p.hide {
@@ -103,6 +190,8 @@ button {
 	color: #666;
 }
 
+/* @end */
+
 #entries_by_day table {
 	width: 100%;
 }
@@ -111,13 +200,23 @@ button {
 #entries_by_day table th {
 	border-bottom: 1px solid #c7e0f9;
 	padding: 1px 0;
+	color: #4a4a4a;
 }
 
 #entries_by_day .header_row th {
-	padding-top: 8px;
+	padding-top: 18px;
 	color: #aaa;
 	text-transform: uppercase;
 	font-size: 11px;
+	vertical-align: bottom;
+	padding-bottom: 3px;
+}
+
+#entries_by_day .header_row th strong {
+	text-transform: none;
+	font-size: 14px;
+	color: #000;
+	font-weight: normal;
 }
 
 #entries_by_day .date_header th {
@@ -130,7 +229,8 @@ button {
 
 #entries_by_day .summary td {
 	border: 0;
-	padding-bottom: 8px;
+	padding-bottom: 10px;
+	padding-top: 4px;
 }
 
 #entries_by_day .summary strong {

@@ -14,9 +14,20 @@
 
 <div id="container">
 <%= content_tag :p, system_message, :id => "system_message", :class => system_message_class if system_message %>
+<div id="header" class="clearfix">
+	<h1>Practical Creative &amp; Code</h1>
+	<ul class="main_navigation nolist">
+		<%= nav_item "Journal", journal_entries_path, :journal_entries %>
+		<%= nav_item "Clients", clients_path %>
+		<%= nav_item "Projects", projects_path %>
+	</ul>
+</div>
 <%= yield :layout %>
 </div>
 
 <%= lightbox_tag %>
+<script type="text/javascript" charset="utf-8">
+Fields.observeCurrencyFields()
+</script>
 </body>
 </html>

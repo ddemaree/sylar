@@ -11,14 +11,17 @@
 			<span class="date"><%= date.to_s(:long) %></span>
 		</th>
 	</tr>
+	
+	<% entries.group_by(&:client).sort { |a, b| a[0].to_s <=> b[0].to_s }.each do |client, client_entries| %>
+	
 	<tr class="header_row">
-		<th>Client/Project</th>
+		<th><strong><%= client %></strong></th>
 		<th>Notes</th>
 		<th class="hours">Hours</th>
 		<th>&nbsp;</th>
 		<th>&nbsp;</th>
 	</tr>
-	<% content_tags_for :tr, entries do |entry| %>
+	<% content_tags_for :tr, client_entries do |entry| %>
 		<td><%= entry.trackable %></td>
 		<td><%= entry.notes %></td>
 		<td class="hours"><%= entry.hours %></td>
@@ -27,6 +30,7 @@
 			<%= link_to_lightbox "Edit", [:edit, entry], :class => "action edit" %>
 			<%= link_to_remote "Delete", {:url => entry, :method => :delete, :confirm => "Are you sure?"}, :class => "action delete" %>
 		</td>
+	<% end %>
 	<% end %>
 	<tr class="summary">
 		<td colspan="2">&nbsp;</td>

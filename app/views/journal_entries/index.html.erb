@@ -1,47 +1,46 @@
 <div class="titlebar">
 	<h2>Journal</h2>
 	<ul class="page_actions nolist">
-		<li><%= link_to_lightbox "Add new entry", new_journal_entry_path %></li>
+		<li><%= link_to_function("Add new entry") { |p| p["add_new_entry"].toggle }  %></li>
 	</ul>
 </div>
+<div id="add_new_entry">
+<h3>Add a new entry</h3>
+<% form_remote_for (@journal_entry ||= JournalEntry.new), :html => {:class => "clearfix"} do |f| %>
+<table cellspacing="0" border="0">
+	<tr>
+		<td class="project">
+			<%= f.label :trackable_id, "Client/Project" %>
+			<%= f.select :trackable_id, trackable_options %>
+		</td>
+		<td class="hours">
+			<%= f.label :hours %>
+			<%= f.text_field :hours, :size => 4, :onclick => "this.select()" %>
+		</td>
+	</tr>
+	<tr>
+		<td class="notes" colspan="2"><%= f.text_area :notes %></td>
+	</tr>
+</table>
+<p class="form_actions">
+	<button class="add_entry" type="submit">Add Entry</button>
+</p>
+<div id="link_to_extras">
+	<%= link_to_function("Show options") { |p| p['extras'].toggle; p['link_to_extras'].toggle } %>
+</div>
+<dl id="extras" class="form-fields" style="display:none">
+	<%= f.labeled_date_select :date %>
+	<div class="singleton">
+		<%= f.check_box :billable %>
+		<%= f.label :billable, "These hours are billable" %>
+	</div>
+	<%= f.labeled_currency_field :rate_in_dollars, :size => 8 %>
+
+	<p class="hide"><%= link_to_function("Hide options") { |p| p['extras'].toggle; p['link_to_extras'].toggle } %></p>
+</dl>
+<% end %>
+</div>
 <div class="main">
-
-	<div id="add_new_entry">
-	<h3>Add a new entry</h3>
-	<% form_remote_for (@journal_entry ||= JournalEntry.new), :html => {:class => "clearfix"} do |f| %>
-	<table cellspacing="0" border="0">
-		<tr>
-			<td class="project">
-				<%= f.label :trackable_id, "Client/Project" %>
-				<%= f.select :trackable_id, trackable_options %>
-			</td>
-			<td class="hours">
-				<%= f.label :hours %>
-				<%= f.text_field :hours, :size => 4 %>
-			</td>
-		</tr>
-		<tr>
-			<td class="notes" colspan="2"><%= f.text_area :notes %></td>
-		</tr>
-	</table>
-	<p class="form_actions">
-		<button class="add_entry" type="submit">Add Entry</button>
-	</p>
-	<div id="link_to_extras">
-		<%= link_to_function("Show options") { |p| p['extras'].toggle; p['link_to_extras'].toggle } %>
-	</div>
-	<dl id="extras" class="form-fields" style="display:none">
-		<%= f.labeled_date_select :date %>
-		<div class="singleton">
-			<%= f.check_box :billable %>
-			<%= f.label :billable, "These hours are billable" %>
-		</div>
-		<%= f.labeled_currency_field :rate_in_dollars %>
-
-		<p class="hide"><%= link_to_function("Hide options") { |p| p['extras'].toggle; p['link_to_extras'].toggle } %></p>
-	</dl>
-	<% end %>
-	</div>
 
 <div id="entries_by_day">
 <%= render :partial => "grouped_index", :locals => {:journal_entries => journal_entries_for_index} %>

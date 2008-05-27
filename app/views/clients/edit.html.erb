@@ -9,6 +9,10 @@
 			<%= f.labeled_text_field_with_error :name, :label => "Client" %>
 			<%= f.labeled_text_field_with_error :contact_name %>
 			<%= f.labeled_text_field_with_error :contact_email %>
+			<div class="singleton">
+				<%= f.check_box :active %>
+				<em>This client is active.</em> Uncheck this box to hide this client.
+			</div>
 		<% end %>
 		<p class="form_actions">
 			<button type="submit" class="save_changes">Save Changes</button>
