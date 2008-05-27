@@ -1,2 +1,22 @@
-<h1>Clients#index</h1>
-<p>Find me in app/views/clients/index.html.erb</p>
+<div class="titlebar">
+	<h2>Clients</h2>
+	<ul class="page_actions nolist">
+		<li><%= link_to "New client", new_client_path, :class => "action new" %></li>
+	</ul>
+</div>
+<div class="main">
+<table id="clients_index" class="list_view" cellspacing="0" border="0">
+	<tr class="header_row">
+		<th>Client</th>
+		<th>Contact</th>
+		<th>&nbsp;</th>
+	</tr>
+	<% content_tags_for :tr, @clients do |client| %>
+		<td><%= link_to client, [:edit, client], :class => "item client" %></td>
+		<td><%= mail_to client.contact_email, client.contact_name %></td>
+		<td class="actions">
+			<%= link_to "Edit", [:edit, client], :class => "action edit" %>
+		</td>
+	<% end %>
+</table>
+</div>

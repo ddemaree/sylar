@@ -1,3 +1,7 @@
-# Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  
+  def system_message_class
+    flash[:alert] ? "alert" : "message"
+  end
+  
 end

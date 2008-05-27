@@ -1,2 +1,17 @@
-<h1>Clients#edit</h1>
-<p>Find me in app/views/clients/edit.html.erb</p>
+<div class="titlebar">
+	<p class="back"><%= link_to "&larr; Back to clients", clients_path %></p>
+	<h2><%= @client.new_record? ? "New" : "Edit" %> Client</h2>
+</div>
+<div class="main">
+	<%= error_messages_for :client %>
+	<% form_for @client do |f| %>
+		<% fieldset :dl => true do %>
+			<%= f.labeled_text_field_with_error :name, :label => "Client" %>
+			<%= f.labeled_text_field_with_error :contact_name %>
+			<%= f.labeled_text_field_with_error :contact_email %>
+		<% end %>
+		<p class="form_actions">
+			<button type="submit" class="save_changes">Save Changes</button>
+		</p>
+	<% end %>
+</div>

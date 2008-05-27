@@ -1,2 +1,17 @@
-<h1>Projects#edit</h1>
-<p>Find me in app/views/projects/edit.html.erb</p>
+<div class="titlebar">
+	<p class="back"><%= link_to "&larr; Back to projects", projects_path %></p>
+	<h2><%= @project.new_record? ? "New" : "Edit" %> Project</h2>
+</div>
+<div class="main">
+	<%= error_messages_for :project %>
+	<% form_for @project do |f| %>
+		<% fieldset :dl => true do %>
+			<%= f.labeled_collection_select_with_error :client_id, Client.find(:all), :id, :name, :include_blank => true %>
+			<%= f.labeled_text_field_with_error :name, :label => "Project Name" %>
+			<%= f.labeled_currency_field_with_error :rate_in_dollars %>
+		<% end %>
+		<p class="form_actions">
+			<button type="submit" class="save_changes">Save Changes</button>
+		</p>
+	<% end %>
+</div>

@@ -1,2 +1,26 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<div class="titlebar">
+	<h2>Projects</h2>
+	<ul class="page_actions nolist">
+		<li><%= link_to "New project", new_project_path, :class => "action new" %></li>
+	</ul>
+</div>
+<div class="main">
+<% if @projects.empty? %>
+<p class="noitems">No projects found. <%= link_to "Add the first one now?", {:action => "new"} %></p>
+<% else %>
+<table id="clients_index" class="list_view" cellspacing="0" border="0">
+	<tr class="header_row">
+		<th>Project</th>
+		<th>Client</th>
+		<th>&nbsp;</th>
+	</tr>
+	<% content_tags_for :tr, @projects do |project| %>
+		<td><%= link_to project, [:edit, project], :class => "item project" %></td>
+		<td><%= project.client %></td>
+		<td class="actions">
+			<%= link_to "Edit", [:edit, project], :class => "action edit" %>
+		</td>
+	<% end %>
+</table>
+<% end %>
+</div>
