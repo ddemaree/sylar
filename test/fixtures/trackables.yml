@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  subject_type: MyString
+  subject_id: 1
+  subject_name: MyString
+  client_id: 1
+
+two:
+  subject_type: MyString
+  subject_id: 1
+  subject_name: MyString
+  client_id: 1

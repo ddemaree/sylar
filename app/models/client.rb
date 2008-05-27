@@ -1,4 +1,5 @@
 class Client < ActiveRecord::Base
+  include ActsAsTrackable
   
   has_many :projects
   has_many :journal_entries, :through => :projects
@@ -11,6 +12,14 @@ class Client < ActiveRecord::Base
   
   def to_param
     "#{id}-#{name.gsub(/[^A-Za-z0-9-]+/,"-")}"
+  end
+  
+  def to_client
+    self
+  end
+  
+  def to_subject_name
+    "[#{name}]"
   end
   
 end

@@ -1,0 +1,69 @@
+
+
+* { 
+  margin: 0; 
+  padding: 0;
+}
+
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size:12px;
+	line-height:18px;
+}
+
+body, td, th, button {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size:12px;
+}
+
+p {
+	font-size: 12px;
+  margin-bottom: 18px; 
+}
+
+h1 { 
+  font-size: 24px; 
+  line-height: 36px;
+  margin-bottom: 18px; 
+}
+h2 { 
+  font-size: 18px; 
+  line-height: 18px; 
+  margin-bottom: 18px;
+}
+h3 { 
+  font-size: 12px; 
+  line-height: 18px; 
+}
+
+ul, 
+ol { 
+  margin-bottom: 18px; 
+}
+
+td, th {
+	font-size: 12px;
+	text-align: left;
+}
+
+.hideme {
+	display: none;
+}
+
+.nolist, .nolist li {
+	list-style: none;
+	margin: 0;
+}
+
+.clearfix:after {
+  content:".";
+  display:block;
+  height:0;
+  clear:both;
+  visibility:hidden;
+}
+.clearfix {display:inline-block;}
+/* Hide from IE Mac \*/
+.clearfix {display:block;}
+/* End hide from IE Mac */
+

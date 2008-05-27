@@ -1,0 +1,2 @@
+page.call "Lightbox.hideAll"
+page["entries_by_day"].replace_html :partial => "grouped_index", :locals => {:journal_entries => journal_entries_for_index}

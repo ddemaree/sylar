@@ -1,26 +1,51 @@
 <div class="titlebar">
 	<h2>Journal</h2>
 	<ul class="page_actions nolist">
-		<li><%= link_to "New entry", new_journal_entry_path, :class => "action new" %></li>
+		<li><%= link_to_lightbox "Add new entry", new_journal_entry_path %></li>
 	</ul>
 </div>
 <div class="main">
-<table id="entries_index" class="list_view" cellspacing="0" border="0">
-	<tr class="header_row">
-		<th>Date</th>
-		<th>Client</th>
-		<th>Project</th>
-		<th>Hours</th>
-		<th>&nbsp;</th>
-	</tr>
-	<% content_tags_for :tr, @journal_entries do |entry| %>
-		<td><%= entry.date %></td>
-		<td><%= entry.client %></td>
-		<td><%= entry.project %></td>
-		<td><%= entry.hours %></td>
-		<td class="actions">
-			<%= link_to "Edit", [:edit, entry], :class => "action edit" %>
-		</td>
+
+	<div id="add_new_entry">
+	<h3>Add a new entry</h3>
+	<% form_remote_for (@journal_entry ||= JournalEntry.new), :html => {:class => "clearfix"} do |f| %>
+	<table cellspacing="0" border="0">
+		<tr>
+			<td class="project">
+				<%= f.label :trackable_id, "Client/Project" %>
+				<%= f.select :trackable_id, trackable_options %>
+			</td>
+			<td class="hours">
+				<%= f.label :hours %>
+				<%= f.text_field :hours, :size => 4 %>
+			</td>
+		</tr>
+		<tr>
+			<td class="notes" colspan="2"><%= f.text_area :notes %></td>
+		</tr>
+	</table>
+	<p class="form_actions">
+		<button class="add_entry" type="submit">Add Entry</button>
+	</p>
+	<div id="link_to_extras">
+		<%= link_to_function("Show options") { |p| p['extras'].toggle; p['link_to_extras'].toggle } %>
+	</div>
+	<dl id="extras" class="form-fields" style="display:none">
+		<%= f.labeled_date_select :date %>
+		<div class="singleton">
+			<%= f.check_box :billable %>
+			<%= f.label :billable, "These hours are billable" %>
+		</div>
+		<%= f.labeled_currency_field :rate_in_dollars %>
+
+		<p class="hide"><%= link_to_function("Hide options") { |p| p['extras'].toggle; p['link_to_extras'].toggle } %></p>
+	</dl>
 	<% end %>
-</table>
+	</div>
+
+<div id="entries_by_day">
+<%= render :partial => "grouped_index", :locals => {:journal_entries => journal_entries_for_index} %>
+</div>
+	
+
 </div>

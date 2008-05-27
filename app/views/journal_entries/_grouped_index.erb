@@ -1,0 +1,40 @@
+<p class="summary">
+	<strong>Total hours</strong>
+	<%= journal_entries.map(&:hours).sum %>
+</p>
+
+<table id="entries_index" class="list_view" cellspacing="0" border="0">
+<% journal_entries.group_by(&:date).sort { |a, b| b[0] <=> a[0] }.each do |date, entries| %>
+	<tr class="date_header">
+		<th colspan="5">
+			<span class="weekday"><%= date.strftime("%a") %></span>
+			<span class="date"><%= date.to_s(:long) %></span>
+		</th>
+	</tr>
+	<tr class="header_row">
+		<th>Client/Project</th>
+		<th>Notes</th>
+		<th class="hours">Hours</th>
+		<th>&nbsp;</th>
+		<th>&nbsp;</th>
+	</tr>
+	<% content_tags_for :tr, entries do |entry| %>
+		<td><%= entry.trackable %></td>
+		<td><%= entry.notes %></td>
+		<td class="hours"><%= entry.hours %></td>
+		<td><%= entry.billable ? "*" : "&nbsp;" %></td>
+		<td class="actions">
+			<%= link_to_lightbox "Edit", [:edit, entry], :class => "action edit" %>
+			<%= link_to_remote "Delete", {:url => entry, :method => :delete, :confirm => "Are you sure?"}, :class => "action delete" %>
+		</td>
+	<% end %>
+	<tr class="summary">
+		<td colspan="2">&nbsp;</td>
+		<td class="hours">
+			<strong>Daily total</strong>
+			<%= entries.map(&:hours).map(&:to_f).sum %>
+		</td>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+<% end %>
+</table>

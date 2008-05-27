@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  include ActsAsTrackable
   
   validates_presence_of :name, :client_id, :rate
   

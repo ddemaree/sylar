@@ -38,6 +38,10 @@ class User < ActiveRecord::Base
     u = find_by_login(login) # need to get the salt
     u && u.authenticated?(password) ? u : nil
   end
+  
+  def to_s
+    (name || login)
+  end
 
   protected
     

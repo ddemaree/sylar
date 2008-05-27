@@ -1,0 +1,11 @@
+LightboxHelper
+==============
+
+A simple plugin for adding modal dialog boxes to your apps.
+
+Don't forget to include the CSS file in your layout:
+
+<%= stylesheet_link_tag 'lightbox' %>
+
+
+Copyright (c) 2007 David Demaree, released under the MIT license

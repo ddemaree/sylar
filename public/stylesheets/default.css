@@ -1,0 +1,150 @@
+/* @override http://sylar.local.practical.cc/stylesheets/default.css */
+
+@import url(lib/baseline.css);
+
+#container .titlebar {
+	background: #def;
+	padding: 16px;
+}
+
+#container .main {
+	padding: 16px;
+}
+
+#dialog {
+	min-width: 400px;
+	min-height: 300px;
+}
+
+#dialog #close_dialog {
+	position: absolute;
+	right: 10px;
+	top: 6px;
+	color: #fff;
+	text-decoration: none;
+}
+
+button {
+	padding: 4px;
+}
+
+#add_new_entry {
+	margin-bottom: 20px;
+	width: 540px;
+}
+
+#dialog #add_new_entry {
+	-webkit-box-shadow: 6px 6px 12px rgba(0,0,0,0.4);
+}
+
+#add_new_entry h3 {
+	font-size: 16px;
+	padding: 6px 8px 3px;
+	background: #f60;
+	color: #fff;
+	-webkit-border-top-left-radius: 6px;
+	font-weight: normal;
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+
+#add_new_entry form {
+	border: 2px solid #f60;
+	background: #fff;
+	padding-bottom: 8px;
+}
+
+#add_new_entry table {
+	width: 100%;
+	border-spacing: 8px 4px;
+	margin-top: 4px;
+}
+
+#add_new_entry table textarea {
+	width: 518px;
+	height: 60px;
+}
+
+#add_new_entry table td.project {
+	width: 300px;
+}
+
+#add_new_entry table select {
+	width: 200px;
+}
+
+#add_new_entry table label {
+	font-weight: bold;
+	margin-right: 6px;
+}
+
+#add_new_entry #link_to_extras {
+	padding: 0 8px;
+}
+
+#add_new_entry .form_actions {
+	margin: 0;
+	padding: 4px 8px;
+	float: right;
+	background: #fff;
+}
+
+#add_new_entry #extras {
+	border: 1px solid #666;
+	border-width: 0 1px 1px 0;
+	margin: 0px 40px 4px 8px;
+	padding: 8px;
+}
+
+#add_new_entry #extras p.hide {
+	margin: 8px 0 0;
+}
+
+#add_new_entry #extras p.hide a {
+	color: #666;
+}
+
+#entries_by_day table {
+	width: 100%;
+}
+
+#entries_by_day table td,
+#entries_by_day table th {
+	border-bottom: 1px solid #c7e0f9;
+	padding: 1px 0;
+}
+
+#entries_by_day .header_row th {
+	padding-top: 8px;
+	color: #aaa;
+	text-transform: uppercase;
+	font-size: 11px;
+}
+
+#entries_by_day .date_header th {
+	font-size: 16px;
+	font-weight: normal;
+	padding-top: 8px;
+	padding-bottom: 4px;
+	border-bottom: 2px solid #888;
+}
+
+#entries_by_day .summary td {
+	border: 0;
+	padding-bottom: 8px;
+}
+
+#entries_by_day .summary strong {
+	color: #a3b7cb;
+	text-transform: uppercase;
+	font-size: 11px;
+	margin-right: 4px;
+}
+
+#entries_by_day table .hours {
+	text-align: right;
+	padding-right: 10px;
+}
+
+#entries_by_day table .actions {
+	text-align: right;
+}
