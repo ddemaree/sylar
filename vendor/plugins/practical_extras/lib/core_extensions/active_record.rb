@@ -6,11 +6,12 @@ class ActiveRecord::Base
   def self.acts_as_currency(*fields)
     fields.each do |fieldname|
       define_method("#{fieldname}_in_dollars") do
-        (send(fieldname).to_f / 100.0)
+        (send(fieldname).to_f / 100.0) unless send(fieldname).nil?
       end
 
       define_method("#{fieldname}_in_dollars=") do |new_value|
-        send("#{fieldname}=", (new_value.to_f * 100.0).to_i)
+        new_value = new_value.blank? ? nil : (new_value.to_f * 100.0).to_i
+        send("#{fieldname}=", new_value)
       end
     end
   end

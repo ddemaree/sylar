@@ -1,19 +1,17 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  project_id: 1
-  notes: MyText
-  start_time: 2008-05-27 07:54:07
-  end_time: 2008-05-27 07:54:07
+first_entry:
+  client: practical
+  trackable: practical_trackable
+  notes: Hello to all my friends
   date: 2008-05-27
   billable: false
-  rate: 1
+  rate: 7500
 
-two:
-  project_id: 1
-  notes: MyText
-  start_time: 2008-05-27 07:54:07
-  end_time: 2008-05-27 07:54:07
+entry_with_zero_rate:
+  client: practical
+  trackable: practical_trackable
+  notes: Hello to all my friends
   date: 2008-05-27
   billable: false
-  rate: 1
+  rate: 0

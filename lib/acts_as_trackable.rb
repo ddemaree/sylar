@@ -6,6 +6,8 @@ module ActsAsTrackable
       has_one :trackable, :as => :subject
       after_save :update_trackable
       after_destroy :destroy_trackable
+      
+      acts_as_currency :rate
     end
   end
   
@@ -14,6 +16,7 @@ module ActsAsTrackable
     trackable.client = self.to_client
     trackable.subject_name = self.to_subject_name
     trackable.active = self.active
+    trackable.rate   = self.rate
     trackable.save
   end
   

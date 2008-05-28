@@ -23,15 +23,13 @@
 <div id="link_to_extras">
 	<%= link_to_function("Show options") { |p| p['extras'].toggle; p['link_to_extras'].toggle } %>
 </div>
-<dl id="extras" class="form-fields" style="display:none">
+<dl id="extras" class="form-fields">
 	<%= f.labeled_date_select :date %>
 	<div class="singleton">
 		<%= f.check_box :billable %>
 		<%= f.label :billable, "These hours are billable" %>
 	</div>
 	<%= f.labeled_currency_field :rate_in_dollars %>
-	
-	<p class="hide"><%= link_to_function("Hide options") { |p| p['extras'].toggle; p['link_to_extras'].toggle } %></p>
 </dl>
 <% end %>
 </div>

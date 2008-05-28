@@ -1,10 +1,14 @@
-<p class="summary">
-	<strong>Total hours</strong>
-	<%= journal_entries.map(&:hours).sum %>
-</p>
+<div class="info_for_month">
+	<h1><%= start_date.strftime("%B %Y") %></h1>
+	
+	<p class="summary">
+		<strong>Total hours</strong>
+		<%= total_hours_for_index %>
+	</p>
+</div>
 
 <table id="entries_index" class="list_view" cellspacing="0" border="0">
-<% journal_entries.group_by(&:date).sort { |a, b| b[0] <=> a[0] }.each do |date, entries| %>
+<% journal_entries.each do |date, entries| %>
 	<tr class="date_header">
 		<th colspan="5">
 			<span class="weekday"><%= date.strftime("%a") %></span>

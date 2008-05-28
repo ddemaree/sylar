@@ -9,6 +9,7 @@
 			<%= f.labeled_text_field_with_error :name, :label => "Client" %>
 			<%= f.labeled_text_field_with_error :contact_name %>
 			<%= f.labeled_text_field_with_error :contact_email %>
+			<%= f.labeled_currency_field :rate_in_dollars %>
 			<div class="singleton">
 				<%= f.check_box :active %>
 				<em>This client is active.</em> Uncheck this box to hide this client.

@@ -1,7 +1,7 @@
 class JournalEntriesController < ApplicationController
   
   def index
-    
+
   end
   
   def new
@@ -58,8 +58,23 @@ class JournalEntriesController < ApplicationController
   end
   
   def journal_entries_for_index
-    @journal_entries ||= JournalEntry.current_month
+    @journal_entries ||= JournalEntry.grouped_by_day(start_date_for_current_request)
   end
   helper_method :journal_entries_for_index
+  
+  def total_hours_for_index
+    @total_hours ||= JournalEntry.by_month(start_date_for_current_request).sum(:hours)
+  end
+  helper_method :total_hours_for_index
+  
+  def start_date_for_current_request
+    params[:year]  ||= Date.today.year
+    params[:month] ||= Date.today.month
+
+    @start_date_for_current_request ||= Date.new(params[:year].to_i, params[:month].to_i)
+  end
+  alias_method :start_date, :start_date_for_current_request
+  helper_method :start_date_for_current_request
+  helper_method :start_date
 
 end
