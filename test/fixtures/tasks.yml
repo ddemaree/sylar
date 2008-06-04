@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+open_task:
+  state: open
+  description: This is an open task!
+  billable: false
+  trackable: practical_trackable
+  user: quentin
+  started_at: <%= Time.zone.now - 2.5.hours %>
+
+open_task_for_another_user:
+  state: open
+  description: This is an open task!
+  billable: false
+  trackable: practical_trackable
+  user: aaron
+  
+sleeping_task:
+  state: sleeping
+  description: Zzzzzzzzzz
+  billable: false
+  trackable: practical_trackable
+  user: quentin
+  started_at: <%= Time.zone.now - 2.hours %>
+
+finished_task:
+  state: finished
+  description: All done
+  billable: false
+  trackable: practical_trackable
+  user: quentin

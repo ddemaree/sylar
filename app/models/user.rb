@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
+  
+  has_many :tasks
+  has_many :journal_entries
 
 
   validates_presence_of     :login

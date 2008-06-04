@@ -1,0 +1,23 @@
+<p>
+  <b>State:</b>
+  <%=h @task.state %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @task.description %>
+</p>
+
+<p>
+  <b>Billable:</b>
+  <%=h @task.billable %>
+</p>
+
+<p>
+  <b>Trackable:</b>
+  <%=h @task.trackable_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>
