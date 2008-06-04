@@ -1,4 +1,5 @@
 class Task < ActiveRecord::Base
+  cattr_accessor :current_user
   
   belongs_to :trackable
   belongs_to :user

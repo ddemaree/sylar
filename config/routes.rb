@@ -1,12 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :tasks
 
-  
   map.resources :journal_entries
-  map.resources :clients, :has_many => [:projects]
+  map.resources :clients, :has_many => [:projects, :tasks]
   
   map.resources :projects do |project|
     project.resources :journal_entries
+    project.resources :tasks
   end
   
   map.resources :users

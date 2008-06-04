@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
   
   def set_current_user
     JournalEntry.current_user = current_user if logged_in?
+    Task.current_user = current_user if logged_in?
   end
   
   def section_name
@@ -28,5 +29,10 @@ class ApplicationController < ActionController::Base
     flash[:message] || flash[:alert] || params[:system_message]
   end
   helper_method :system_message
+  
+  def current_parent
+    
+  end
+  helper_method :current_parent
   
 end
