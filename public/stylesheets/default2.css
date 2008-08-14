@@ -1,0 +1,22 @@
+/* @override http://sylar.local.practical.cc/stylesheets/default2.css */
+
+@import url(lightbox.css);
+@import url(journal_entries.css);
+
+#hd {
+	background: #f7dc33;
+}
+
+#dialog {
+	min-width: 400px;
+	min-height: 300px;
+	background: #fff;
+}
+
+#dialog #close_dialog {
+	position: absolute;
+	right: 10px;
+	top: 6px;
+	color: #fff;
+	text-decoration: none;
+}

@@ -1,4 +1,5 @@
 class JournalEntriesController < ApplicationController
+  layout 'default2'
   
   def index
 

@@ -1,33 +1,28 @@
-<div class="info_for_month">
-	<h1><%= start_date.strftime("%B %Y") %></h1>
-	
-	<p class="summary">
-		<strong>Total hours</strong>
-		<%= total_hours_for_index %>
-	</p>
-</div>
-
 <table id="entries_index" class="list_view" cellspacing="0" border="0">
 <% journal_entries.each do |date, entries| %>
+	<% next if (entries.empty? && (date.cwday > 5)) %>
+
 	<tr class="date_header">
 		<th colspan="5">
 			<span class="weekday"><%= date.strftime("%a") %></span>
 			<span class="date"><%= date.to_s(:long) %></span>
 		</th>
 	</tr>
-	
+	<% if entries.empty? %>
+	<tr class="noentries">
+		<td colspan="4">No entries for this date</td>
+	</tr>
+	<% else %>
 	<% entries.group_by(&:client).sort { |a, b| a[0].to_s <=> b[0].to_s }.each do |client, client_entries| %>
 	
 	<tr class="header_row">
 		<th><strong><%= client %></strong></th>
-		<th>Notes</th>
 		<th class="hours">Hours</th>
 		<th>&nbsp;</th>
 		<th>&nbsp;</th>
 	</tr>
 	<% content_tags_for :tr, client_entries do |entry| %>
-		<td><%= entry.trackable %></td>
-		<td><%= entry.notes %></td>
+		<td><%= trackable_label client, entry.trackable %> <%= entry.notes %></td>
 		<td class="hours"><%= entry.hours %></td>
 		<td><%= entry.billable ? "*" : "&nbsp;" %></td>
 		<td class="actions">
@@ -37,12 +32,13 @@
 	<% end %>
 	<% end %>
 	<tr class="summary">
-		<td colspan="2">&nbsp;</td>
+		<td colspan="1">&nbsp;</td>
 		<td class="hours">
 			<strong>Daily total</strong>
 			<%= entries.map(&:hours).map(&:to_f).sum %>
 		</td>
 		<td colspan="2">&nbsp;</td>
 	</tr>
+	<% end %>
 <% end %>
 </table>
