@@ -89,6 +89,10 @@
 	margin-right: 4px;
 }
 
+#entries_by_day .project {
+	font-weight: bold;
+}
+
 #entries_by_day .noentries td {
 	border: 0;
 	padding: 10px 0 30px;

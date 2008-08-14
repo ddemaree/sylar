@@ -16,10 +16,14 @@
 				</div>
 			</div>
 			<div class="info_for_month yui-u">
+				<%= link_to_lightbox "Add entry", new_journal_entry_path, :class => "action new" %>
+				
 				<p class="summary">
 					<strong>Total hours</strong>
 					<span class="total"><%= total_hours_for_index %></span>
 				</p>
+				
+				<%= (100 - total_hours_for_index).to_f / (Date.today..start_date.end_of_month).select(&:weekday?).length %>
 			</div>
    	</div>
    </div> 

@@ -10,3 +10,5 @@ Rails::Initializer.run do |config|
     :secret      => '7718624ea521eee16b9e9216dc610ef9c16c1798c089cbb6cc7ccc2a22bb017515e5eb7922a39fdc617166ee8a20cd0ac64b40d4985feafba19eb1def2936b70'
   }
 end
+
+require 'core_extensions'
