@@ -58,6 +58,8 @@ class JournalEntriesController < ApplicationController
     end
   end
   
+protected
+  
   def journal_entries_for_index
     @journal_entries ||= JournalEntry.grouped_by_day(start_date_for_current_request)
   end
@@ -77,5 +79,10 @@ class JournalEntriesController < ApplicationController
   alias_method :start_date, :start_date_for_current_request
   helper_method :start_date_for_current_request
   helper_method :start_date
+  
+  def current_month?
+    !!(start_date == Date.today.beginning_of_month)
+  end
+  helper_method :current_month?
 
 end

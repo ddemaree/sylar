@@ -131,3 +131,39 @@
 	padding: 0.2em;
 	font-size: 300%;
 }
+
+
+#add_new_entry {
+	width: 600px;
+	text-align: left;
+}
+
+#add_new_entry h3 {
+	background: #000;
+	padding: 6px 10px;
+	font-size: 16px;
+	color: #fff;
+}
+
+#add_new_entry td {
+	padding: 6px 10px 0;
+}
+
+#add_new_entry .hours,
+#add_new_entry .hours input {
+	text-align: right;
+}
+
+#add_new_entry .notes {
+	padding: 6px 10px 6px;
+}
+
+#add_new_entry .notes textarea {
+	width: 574px;
+	height: 100px;
+}
+
+#add_new_entry p {
+	background: #ccc;
+	padding: 6px 10px;
+}

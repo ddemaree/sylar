@@ -20,3 +20,36 @@
 	color: #fff;
 	text-decoration: none;
 }
+
+
+.graph-container .row {
+	border-bottom: 1px solid #d4d4d4;
+	position: relative;
+	width: 100%;
+	float: left;
+	height: 2em;
+}
+
+.graph-container .bar {
+	background: #e5e5e5;
+	position: absolute;
+	z-index: 0;
+	height: 2em;
+}
+
+.graph-container .index {
+	position: absolute;
+	left: 0.4em;
+	top: 0.4em;
+	font-size: 108%;
+	z-index: 2;
+}
+
+.graph-container .value {
+	position: absolute;
+	right: 0.4em;
+	top: 0.4em;
+	font-size: 108%;
+	z-index: 2;
+	color: #999;
+}

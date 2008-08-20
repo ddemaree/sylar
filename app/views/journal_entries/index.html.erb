@@ -23,7 +23,27 @@
 					<span class="total"><%= total_hours_for_index %></span>
 				</p>
 				
-				<%= (100 - total_hours_for_index).to_f / (Date.today..start_date.end_of_month).select(&:weekday?).length %>
+				<% if current_month? %>
+				<%= html_graph %>
+				
+				<table>
+				<% (hbc ||= Analyzer.hours_by_client(journal_entries_for_index)).each do |client, hash| %>
+				<tr>
+					<th><%= client %></th>
+					<td><%= hash[:hours] %></td>
+					<td><%= hash[:total] %></td>
+				</tr>
+				<% end %>
+				<tr>
+					<th colspan="2">Total revenue</th>
+					<td><%= revenue = (hbc.collect { |a| a.last[:total] }.sum) %></td>
+				</tr>
+				<tr>
+					<th colspan="2">Average hourly rate</th>
+					<td><%= number_with_precision(revenue / total_hours_for_index, 2) %></td>
+				</tr>
+				</table>
+				<% end %>
 			</div>
    	</div>
    </div> 
