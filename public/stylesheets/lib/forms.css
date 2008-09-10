@@ -1,5 +1,18 @@
 /* @override http://sylar.local.practical.cc/stylesheets/lib/forms.css */
 
+p.form-field {
+	border-bottom: 1px solid #d4d4d4;
+	padding: 6px 8px;
+	margin: 0;
+}
+
+p.form-field label {
+	float: left;
+	width: 84px;
+	text-transform: uppercase;
+	color: #888;
+}
+
 button {
 	font-family: Helvetica, Arial, sans-serif;
  	padding: 4px;

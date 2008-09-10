@@ -1,5 +1,4 @@
 class JournalEntriesController < ApplicationController
-  layout 'default2'
   
   before_filter :handle_view_switching
   
@@ -31,20 +30,7 @@ class JournalEntriesController < ApplicationController
     @journal_entry = JournalEntry.find(params[:id])
   end
   
-  def update
-    @journal_entry = JournalEntry.find(params[:id])
-    @journal_entry.update_attributes!(params[:journal_entry])
-    
-    respond_to do |format|
-      format.html {
-        flash[:message] = "The journal_entry '#{@journal_entry}' was successfully updated"
-        redirect_to :action => 'edit', :id => @journal_entry
-      }
-      format.js {
-        render :action => "refresh.rjs"
-      }
-    end
-  end
+
   
   def destroy
     @journal_entry = JournalEntry.destroy(params[:id])

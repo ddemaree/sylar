@@ -1,6 +1,13 @@
-<%= stylesheet_link_tag "time_entries" %>
 <% render :layout => "/shared/date_navigator" do %>
-<table class="sylr-log">
+<h2>Time Log</h2>
+<ul class="view_select clearfix">
+	<li class="<%= is_current :group_by, "day" %>"><%= link_to "Group by day", url_params_for(:group_by => "day") %></li>
+	<li class="<%= is_current :group_by, "project" %>"><%= link_to "Group by project", url_params_for(:group_by => "project") %></li>
+</ul>
+
+<%= link_to "New entry", url_params_for(:action => "new", :group_by => nil) %>
+
+<table class="st-log">
 <% group_by_param(@journal_entries).each do |header, hash| %>
 <tr class="section">
 	<th colspan="4"><h3><%= header_text(header) %></h3></th>
@@ -16,7 +23,7 @@
 		<td class="num revenue"><%= number_to_currency entry.revenue_in_dollars %></td>
 		<td class="actions">
 			<div>
-				<a href="#" class="a-edit"><span>Edit</span></a>
+				<%= link_to "Edit", [:edit, entry], :class => "a-edit" %>
 				<a href="#" class="a-trash"><span>Delete</span></a>
 			</div>
 		</td>
@@ -46,30 +53,4 @@
 <% end %>
 </table>
 
-
-<% content_for :sidebar do %>
-
-<%= link_to_lightbox "Add new entry", url_params_for({:action => "new", :format => :lightbox}) %>
-
-<ul class="view_select clearfix">
-	<li class="<%= is_current :group_by, "day" %>"><%= link_to "Group by day", url_params_for(:group_by => "day") %></li>
-	<li class="<%= is_current :group_by, "project" %>"><%= link_to "Group by project", url_params_for(:group_by => "project") %></li>
-</ul>
-
-<div class="scoreboard">
-	<h4>Total Hours</h4>
-	<p><%= @journal_entries.map(&:hours).sum %></p>
-</div>
-
-<div class="scoreboard">
-	<h4>Total Revenue</h4>
-	<p><%= number_to_currency @journal_entries.map(&:revenue_in_dollars).sum %></p>
-</div>
-
-<div class="scoreboard">
-	<h4>Average Hourly</h4>
-	<p><%= number_to_currency(((@journal_entries.map(&:revenue_in_dollars).sum / @journal_entries.map(&:hours).sum) rescue 0))  %></p>
-</div>
-
-<% end %>
 <% end %>

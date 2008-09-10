@@ -23,12 +23,6 @@ module ApplicationHelper
     content_tag(:li, link, :class => ("active" if nav_is_active))
   end
   
-  def group_by_date_with_empties(collection, options={})
-    base_set = collection.group_by(&:date)
-    days = (Date.today.beginning_of_month..Date.today).inject({}) { |c, d| c[d] = []; c }
-    days.update(base_set).sort { |a, b| b[0] <=> a[0] }
-  end
-  
   
   def url_params_for(new_params={})
     @url_params = { :escape => false }.merge(new_params)

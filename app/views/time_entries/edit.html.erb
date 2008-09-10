@@ -1,0 +1,39 @@
+
+
+<% form_for @journal_entry, :html => {:class => "entry-form"} do |f| %>
+<div class="je-calendar">
+	<%= f.label :date %>
+	<%= f.calendar_date_select :date %>
+</div>
+<div class="je-right">
+	<p class="form-field">
+		<%= f.label :trackable_id, "Client/Project" %>	
+		<select name="journal_entry[trackable_id]" id="journal_entry_trackable_id">
+		<option></option>
+		<%= option_groups_from_collection_for_select Client.active, :trackables, :name, :id, :subject_name, @journal_entry.trackable_id %>
+		</select>
+	</p>
+
+	<p class="form-field">
+		<%= f.label :hours %>
+		<%= f.text_field :hours %>
+	</p>
+
+	<p class="form-field">
+		<%= f.label :rate_in_dollars %>
+		<%= f.currency_field :rate_in_dollars %>
+	</p>
+	
+	<div class="je-notes">
+		<%= f.label :notes %>
+		<%= f.text_area :notes, :cols => 60, :rows => 5 %>
+	</div>
+</div>
+<hr style="clear:both" />
+
+
+
+<p class="form-action">
+	<button type="submit">Add entry</button>
+</p>
+<% end %>

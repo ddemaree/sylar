@@ -1,6 +1,7 @@
 class Client < ActiveRecord::Base
   include ActsAsTrackable
   
+  has_many :trackables
   has_many :projects
   has_many :journal_entries, :through => :projects
   

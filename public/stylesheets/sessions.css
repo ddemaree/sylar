@@ -1,0 +1,91 @@
+/* @override http://sylar.local.practical.cc/stylesheets/sessions.css */
+
+@import url(lib/baseline.css);
+@import url(lib/forms.css);
+
+body#login {
+	background: #afbba8;
+}
+
+#container {
+	background: #fff;
+	width: 400px;
+	margin: 40px auto;
+}
+
+#container .hd {
+	background: #ffdd00;
+}
+
+#container .hd h1 {
+	font-size: 14px;
+	margin: 0;
+	padding: 0 16px;
+}
+
+#container .hd h1 a {
+	text-decoration: none;
+	color: #000;
+	font-weight: normal;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.bd {
+	padding: 8px;
+}
+
+.bd h3 {
+	padding: 0 8px 4px;
+	border-bottom: 2px solid #666;
+	text-transform: uppercase;
+	font-size: 14px;
+	color: #444;
+}
+
+.bd form {
+	padding: 0px;
+}
+
+.bd form input {
+	font-size: 18px;
+	width: 270px;
+	border: 1px dashed #fff;
+	font-family: Helvetica;
+}
+
+.bd form input:focus {
+	border: 1px solid #666;
+}
+
+.bd form label {
+	padding-top: 4px;
+}
+
+.bd .form-action {
+	padding: 8px;
+	margin: 0;
+	text-align: right;
+}
+
+.bd .form-action button {
+	-webkit-border-radius: 6px;
+	background: #666;
+	color: #fff;
+	border: 0;
+	padding: 4px 8px;
+	text-transform: uppercase;
+}
+
+.bd .form-action button:hover {
+	background: #888;
+}
+
+.ft {
+	background: #f5f5f5;
+	border-top: 1px solid #e5e5e5;
+	padding: 8px;
+	text-align: center;
+	color: #666;
+	font-size: 11px;
+}

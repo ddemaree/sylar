@@ -1,21 +1,10 @@
-<div id="yui-main"> 
-	<div class="yui-b">
-		<div class="navigator">
-			<h1><%= start_date.strftime("%B %Y") %></h1>
-			<ul class="nolist">
-				<li><%= date_navigation_link :previous %></li>
-				<li><%= date_navigation_link :next %></li>
-			</ul>
-		</div>
-	</div>
-   <div class="yui-b">
-   	<div class="yui-ge">
-			<div class="yui-u first">
-				<%= yield :layout %>
-			</div>
-			<div class="info_for_month yui-u">
-				<%= yield :sidebar %>
-			</div>
-   	</div>
-   </div> 
+<div class="st-date-nav">
+	<h2><%= start_date.strftime("%B %Y") %></h2>
+	<ul>
+		<li><em>Previous month:</em> <%= date_navigation_link :previous %></li>
+		<li><em>Next month:</em> <%= date_navigation_link :next %></li>
+	</ul>
+</div>
+<div class="st-bd">
+	<%= yield :layout %>
 </div>
