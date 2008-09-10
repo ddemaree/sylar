@@ -9,8 +9,10 @@ ActionController::Routing::Routes.draw do |map|
   map.dated_stats '/statistics/:year/:month', :year => /\d{4}/, :month => /\d{1,2}/, :controller => 'statistics', :action => 'index'
   map.formatted_dated_stats '/:year/:month/statistics.:format', :year => /\d{4}/, :month => /\d{1,2}/, :controller => 'statistics', :action => 'index'
   
-  map.connect 'journal_entries/:year/:month', :year => /\d{4}/, :month => /\d{1,2}/, :controller => 'journal_entries', :action => 'index'
-  map.resources :journal_entries
+  map.with_options :controller => "time_entries" do |te|
+    te.connect 'journal_entries/:year/:month', :year => /\d{4}/, :month => /\d{1,2}/, :action => 'index'
+    te.resources :journal_entries
+  end
   
   map.resources :projects do |project|
     project.resources :journal_entries
@@ -24,5 +26,5 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   
-  map.root :controller => 'journal_entries'
+  map.root :controller => 'time_entries'
 end

@@ -1,0 +1,103 @@
+.calendar_date_select {
+  background-color: white;
+  color: #777;
+  border: #999 1px solid;
+  display: block;
+  width: 196px;
+}
+
+.calendar_date_select .weekdays th {
+  text-align: center;
+  font-weight: bold;
+  background-color: #ddd;
+  height: 20px;
+}
+
+.calendar_date_select .buttons {
+  display: none;
+}
+
+.calendar_date_select .footer {
+  background-color: #efefef;
+  color: #000;
+	font-weight: bold;
+  padding: 3px 0 3px 5px;
+  text-align: left;
+	font-size: 12px;
+}
+
+.calendar_date_select table {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-padding: 0;
+}
+
+.calendar_date_select .header {
+  background-color: #efefef;
+  border-bottom: 1px solid #aaa;
+  text-align: center;
+	font-weight: bold;
+	padding: 3px;
+	font-size: 11px;
+	line-height: 18px;
+	overflow: hidden;
+}
+
+.calendar_date_select .header .left {
+  float: left;
+}
+
+.calendar_date_select .header .right {
+  float: right;
+}
+
+.calendar_date_select .header .nav {
+  text-decoration: none;
+}
+
+.calendar_date_select .header .title {
+  color: black;
+}
+
+.calendar_date_select td,
+.calendar_date_select th {
+  margin: 0;
+  padding: 0;
+  line-height: 16px;
+  font-size: 11px;
+}
+
+.calendar_date_select td a {
+  display: block;
+	padding: 2px 1px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  font-size: 11px;
+  color: #777;
+}
+
+.calendar_date_select td.other a {
+  color: #ccc;
+}
+
+.calendar_date_select .days td {
+  border-bottom: 1px solid #ccc;
+}
+
+.calendar_date_select td a:hover {
+  background-color: #dcdcdc;
+}
+
+.calendar_date_select td.today a {
+  background-color: #ffc;
+	color: #000;
+}
+
+.calendar_date_select td.selected a {
+  background-color: #000;
+  color: #fff;
+}
