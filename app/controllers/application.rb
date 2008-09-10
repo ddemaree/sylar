@@ -35,4 +35,25 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_parent
   
+  def current_period
+    @current_period ||= Period.find_or_create_by_year_and_month(start_date.year, start_date.month)
+  end
+  helper_method :current_period
+  
+  def start_date_for_current_request
+    params[:year]  ||= Date.today.year
+    params[:month] ||= Date.today.month
+
+    @start_date_for_current_request ||= Date.new(params[:year].to_i, params[:month].to_i)
+  end
+  alias_method :start_date, :start_date_for_current_request
+  helper_method :start_date_for_current_request
+  helper_method :start_date
+  
+  def current_month?
+    !!(start_date == Date.today.beginning_of_month)
+  end
+  helper_method :current_month?
+  
+  
 end

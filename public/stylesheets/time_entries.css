@@ -1,0 +1,162 @@
+/* @override http://sylar.local.practical.cc/stylesheets/time_entries.css */
+
+table.sylr-log {
+	width: 100%;
+}
+
+.sylr-log h3 {
+	background: #fff;
+	padding: 17px 6px 4px;
+	font-size: 18px;
+	border-bottom: 2px solid #000;
+}
+
+.sylr-log h4 {
+	border-bottom: 1px solid #d4d4d4;
+	padding: 16px 6px 4px;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.sylr-log td,
+.sylr-log th {
+	border-bottom: 1px solid #d4d4d4;
+}
+
+.sylr-log .section th {
+	border: 0;
+}
+
+.sylr-log td,
+.sylr-log .summary th {
+	padding: 4px 6px;
+}
+
+.sylr-log .summary th,
+.sylr-log .summary td {
+	font-size: 16px;
+	border-bottom: 0;
+}
+
+.sylr-log .summary th {
+	text-align: right;
+	text-transform: uppercase;
+	color: #999;
+	font-size: 12px;
+	padding-right: 14px;
+}
+
+.sylr-log td.num {
+	text-align: right;
+	width: 90px;
+}
+
+.sylr-log td.hours {
+	width: 40px;
+}
+
+/*.sylr-log td.notes {
+	width: 520px;
+}*/
+
+.sylr-log hr {
+	height: 8px;
+	border: 0;
+}
+
+.sylr-log .spacer td {
+	border: 0;
+	padding: 0;
+}
+
+.sylr-log .section-summary td,
+.sylr-log .section-summary th {
+	background: #ffa;
+	font-size: 16px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+.sylr-log .section-summary th {
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 14px;
+	padding-left: 6px;
+	color: #689;
+	border-top: 1px solid #d4d4d4;
+}
+
+.sylr-log .actions {
+	text-align: right;
+	width: 60px;
+}
+
+.sylr-log .actions div {
+	float: right;
+}
+
+.sylr-log .actions a {
+	width: 20px;
+	height: 20px;
+	background: #f0f;
+	display: block;
+	float: left;
+	text-indent: -9999px !important;
+	outline: none;
+	margin-left: 4px;
+}
+
+.sylr-log .actions a span {
+	display: none;
+}
+
+.view_select li {
+	display: inline;
+}
+
+.view_select {
+	padding: 0px 0px 20px;
+}
+
+.view_select a {
+	float: left;
+	padding: 4px 8px;
+	background: #fff;
+	color: #999;
+	text-decoration: none;
+	-webkit-border-radius: 6px;
+	border: 1px solid #d4d4d4;
+	margin-right: 4px;
+	width: 100px;
+	text-align: center;
+}
+
+.view_select .current a {
+	background: #666;
+	color: #fff;
+	border-color: #666;
+}
+
+li.current {
+	background: #f0f;
+}
+
+.scoreboard {
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.scoreboard h4 {
+	color: #999;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	padding: 0 0 4px;
+	border-bottom: 1px solid #bbb;
+}
+
+.scoreboard p {
+	padding: 10px 0;
+	font-size: 32px;
+	background: #e5e5e5;
+	border-bottom: 1px solid #bbb;
+}

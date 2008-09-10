@@ -11,17 +11,10 @@
    <div class="yui-b">
    	<div class="yui-ge">
 			<div class="yui-u first">
-				<%= link_to "By day", :mode => "daily" %>
-				<%= link_to "By client", :mode => "client" %>
-				
-				<div id="entries_by_day">
-				<%= render :partial => "grouped_index", :locals => {:journal_entries => journal_entries_for_index} %>
-				</div>
+				<%= yield :layout %>
 			</div>
 			<div class="info_for_month yui-u">
-				<%= link_to_lightbox "Add entry", formatted_new_journal_entry_path(:lightbox), :class => "action new" %>
-				
-				<%= render :partial => "statistics" %>
+				<%= yield :sidebar %>
 			</div>
    	</div>
    </div> 

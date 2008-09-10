@@ -167,3 +167,42 @@
 	background: #ccc;
 	padding: 6px 10px;
 }
+
+table.client-nums {
+	border-top: 1px solid #d4d4d4;
+}
+
+table.client-nums .colordot {
+	width: 16px;
+	height: 16px;
+}
+
+.date_header .colordot {
+	width: 16px;
+	height: 16px;
+}
+
+table.client-nums td,
+table.client-nums th {
+	padding: 4px;
+	border-bottom: 1px solid #d4d4d4;
+}
+
+table.client-nums .num {
+	text-align: right;
+}
+
+.client-charts p {
+	text-align: center;
+	padding-bottom: 12px;
+}
+
+.client-charts h4 {
+	font-weight: bold;
+	color: #666;
+	text-transform: uppercase;
+	padding-top: 12px;
+	border-top: 1px solid #d4d4d4;
+	margin: 0;
+	
+}

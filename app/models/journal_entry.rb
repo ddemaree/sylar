@@ -42,6 +42,18 @@ class JournalEntry < ActiveRecord::Base
     sum(:hours)
   end
   
+  def revenue
+    (self.client.rate * self.hours).to_i
+  end
+  
+  def revenue_in_dollars
+    revenue / 100.0
+  end
+  
+  def period
+    @period ||= Period.find_or_create_by_year_and_month(self.date.year, self.date.month)
+  end
+  
 protected
 
   def after_initialize

@@ -1,6 +1,8 @@
 class JournalEntriesController < ApplicationController
   layout 'default2'
   
+  before_filter :handle_view_switching
+  
   def index
 
   end
@@ -59,9 +61,20 @@ class JournalEntriesController < ApplicationController
   end
   
 protected
+
+
+
+  def handle_view_switching
+    unless session[:view_mode]
+      session[:view_mode] = (params[:mode] ||= "daily")
+    end
+    
+    session[:view_mode] = params[:mode] if params[:mode]
+  end
   
   def journal_entries_for_index
-    @journal_entries ||= JournalEntry.grouped_by_day(start_date_for_current_request)
+    #@journal_entries ||= JournalEntry.grouped_by_day(start_date_for_current_request)
+    @journal_entries ||= JournalEntry.by_month(start_date_for_current_request)
   end
   helper_method :journal_entries_for_index
   
@@ -70,19 +83,6 @@ protected
   end
   helper_method :total_hours_for_index
   
-  def start_date_for_current_request
-    params[:year]  ||= Date.today.year
-    params[:month] ||= Date.today.month
 
-    @start_date_for_current_request ||= Date.new(params[:year].to_i, params[:month].to_i)
-  end
-  alias_method :start_date, :start_date_for_current_request
-  helper_method :start_date_for_current_request
-  helper_method :start_date
-  
-  def current_month?
-    !!(start_date == Date.today.beginning_of_month)
-  end
-  helper_method :current_month?
 
 end

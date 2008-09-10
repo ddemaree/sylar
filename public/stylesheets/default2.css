@@ -3,24 +3,64 @@
 @import url(lightbox.css);
 @import url(journal_entries.css);
 
+.sylr-dialog {
+	background: #fff;
+	min-width: 400px;
+	min-height: 240px;
+}
+
+.sylr-dialog .hd {
+	text-align: left;
+	padding: 6px 10px;
+	background: #77a0c2;
+	border-top: 1px solid #a1c2dd;
+	border-bottom: 1px solid #316690;
+	font-weight: bold;
+	color: #fff;
+	text-shadow: -1px -1px 1px rgba(0,0,0,0.7);
+}
+
+.clearfix:after {
+  content:".";
+  display:block;
+  height:0;
+  clear:both;
+  visibility:hidden;
+}
+.clearfix {display:inline-block;}
+/* Hide from IE Mac \*/
+.clearfix {display:block;}
+/* End hide from IE Mac */
+
 #hd {
 	background: #f7dc33;
 }
 
-#dialog {
-	min-width: 400px;
-	min-height: 300px;
-	background: #fff;
+#hd h1 {
+	padding: 8px 16px;
+	font-size: 18px;
+	text-align: center;
+	background: #444;
+	color: #fff;
 }
 
-#dialog #close_dialog {
-	position: absolute;
-	right: 10px;
-	top: 6px;
+#main_navs {
+	padding: 8px 6px 0;
+}
+
+#main_navs li {
+	display: inline;
+}
+
+#main_navs a {
+	float: left;
+	padding: 4px 10px 3px;
+	background: #a9a817;
 	color: #fff;
+	margin-right: 2px;
+	-webkit-border-top-left-radius: 6px;
 	text-decoration: none;
 }
-
 
 .graph-container .row {
 	border-bottom: 1px solid #d4d4d4;

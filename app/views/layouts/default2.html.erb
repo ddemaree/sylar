@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>untitled</title>
+	<title>Sylar &mdash; <%= start_date.strftime("%B %Y") %></title>
 	<meta name="generator" content="TextMate http://macromates.com/">
 	<meta name="author" content="David Demaree">
 	<!-- Date: 2008-08-14 -->
@@ -15,7 +15,15 @@
 </head>
 <body>
 <div id="doc3">
-	<div id="hd"><h1>Practical Creative &amp; Code</h1></div>
+	<div id="hd" class="clearfix">
+		<h1>Practical Creative &amp; Code Time Tracking</h1>
+		
+		<ul id="main_navs">
+			<li><%= link_to "Log", dated_log_path(:year => params[:year], :month => params[:month]) %></li>
+			<li><%= link_to "Statistics", dated_stats_path(:year => params[:year], :month => params[:month]) %></li>
+		</ul>
+		
+	</div>
 	<div id="bd"><%= yield :layout %></div>
 	<div id="ft">&copy; David's braiiiin</div>
 </div>

@@ -1,0 +1,29 @@
+
+<div class="client-charts">
+	<h4>Share of hours</h4>
+	<p><%= clients_pie_chart(Analyzer.hours_by_client(journal_entries_for_index), :key => :hours) %></p>
+	
+	<h4>Share of revenue</h4>
+	<p><%= clients_pie_chart(Analyzer.hours_by_client(journal_entries_for_index), :key => :total, :height => 100, :width => 100) %></p>
+</div>
+
+<table width="100%" border="0" cellspacing="0" class="client-nums">
+<% (hbc ||= Analyzer.hours_by_client(journal_entries_for_index)).each do |client, hash| %>
+<tr>
+	<td><%= color_dot(client) %></td>
+	<th><%= client %></th>
+	<td class="num"><%= number_with_precision hash[:hours], 2 %></td>
+	<td class="num"><%= number_with_precision hash[:total], 2 %></td>
+</tr>
+<% end %>
+<tr>
+	<td>&nbsp;</td>
+	<th colspan="2">Total revenue</th>
+	<td class="num"><%= number_with_precision(revenue = (hbc.collect { |a| a.last[:total] }.sum), 2) %></td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<th colspan="2">Average hourly rate</th>
+	<td class="num"><%= number_with_precision(revenue / total_hours_for_index, 2) %></td>
+</tr>
+</table>

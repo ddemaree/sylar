@@ -3,6 +3,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :clients, :has_many => [:projects, :tasks]
   
+  map.dated_log '/:year/:month/time_entries', :year => /\d{4}/, :month => /\d{1,2}/, :controller => 'time_entries', :action => 'index'
+  map.formatted_dated_log '/:year/:month/time_entries.:format', :year => /\d{4}/, :month => /\d{1,2}/, :controller => 'time_entries', :action => 'index'
+  
+  map.dated_stats '/statistics/:year/:month', :year => /\d{4}/, :month => /\d{1,2}/, :controller => 'statistics', :action => 'index'
+  map.formatted_dated_stats '/:year/:month/statistics.:format', :year => /\d{4}/, :month => /\d{1,2}/, :controller => 'statistics', :action => 'index'
+  
   map.connect 'journal_entries/:year/:month', :year => /\d{4}/, :month => /\d{1,2}/, :controller => 'journal_entries', :action => 'index'
   map.resources :journal_entries
   

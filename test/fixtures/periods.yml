@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  year: 1
+  month: 1
+  hours: 1.5
+  revenue: 1
+  target_hours: 1.5
+  target_revenue: 1
+
+two:
+  year: 1
+  month: 1
+  hours: 1.5
+  revenue: 1
+  target_hours: 1.5
+  target_revenue: 1

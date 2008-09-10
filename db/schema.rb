@@ -1,5 +1,5 @@
 # This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of ActiveRecord to incrementally modify your database, and
+# please use the migrations feature of Active Record to incrementally modify your database, and
 # then regenerate this schema definition.
 #
 # Note that this schema.rb definition is the authoritative source for your database schema. If you need
@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080604154959) do
+ActiveRecord::Schema.define(:version => 20080820193950) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(:version => 20080604154959) do
     t.integer  "task_id"
   end
 
+  create_table "periods", :force => true do |t|
+    t.integer  "year"
+    t.integer  "month"
+    t.float    "hours"
+    t.integer  "revenue"
+    t.float    "target_hours"
+    t.integer  "target_revenue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "projects", :force => true do |t|
     t.integer  "client_id"
     t.string   "name"
@@ -54,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20080604154959) do
     t.integer  "user_id"
     t.datetime "started_at"
     t.float    "total_hours",  :default => 0.0
+    t.integer  "client_id"
   end
 
   create_table "trackables", :force => true do |t|

@@ -1,0 +1,44 @@
+<table id="entries_index" class="list_view" cellspacing="0" border="0">
+<% journal_entries.group_by(&:client).sort.each do |client, client_entries| %>
+	<% next if (client_entries.empty?) %>
+
+	<tr class="date_header">
+		<th colspan="5">
+			<%= color_dot client %>
+			<%= client %>
+		</th>
+	</tr>
+	<% if client_entries.empty? %>
+	<tr class="noentries">
+		<td colspan="4">No entries for this client</td>
+	</tr>
+	<% else %>
+	
+	<tr class="header_row">
+		<th>&nbsp;</th>
+		<th class="hours">Hours</th>
+		<th class="hours">Revenue</th>
+	</tr>
+	
+	
+	<% client_entries.group_by(&:date).sort.reverse.each do |date, date_entries| %>
+	<tr>
+		<td>
+			<span class="weekday"><%= date.strftime("%a") %></span>
+			<span class="date"><%= date.to_s(:long) %></span>
+		</td>
+		<td class="hours"><%= date_entries.collect(&:hours).sum %></td>
+		<td class="hours"><%= date_entries.collect(&:hours).sum * client.rate_in_dollars %></td>
+	</tr>
+	<% end %>
+	<tr class="summary">
+		<td colspan="1">&nbsp;</td>
+		<td class="hours">
+			<strong>Totals</strong>
+			<%= total_hours = client_entries.map(&:hours).map(&:to_f).sum %>
+		</td>
+		<td class="hours"><%= total_hours * client.rate_in_dollars %></td>
+	</tr>
+	<% end %>
+<% end %>
+</table>

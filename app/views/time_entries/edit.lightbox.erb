@@ -1,0 +1,38 @@
+<% form_for (@time_entry ||= JournalEntry.new) do |f| %>
+
+<div class="hd">
+	Add or Edit Entry
+</div>
+<div class="bd">
+	<table cellspacing="0" border="0">
+		<tr>
+			<td class="project">
+				<%= f.label :trackable_id, "Client/Project" %>
+				<%= f.collection_select :trackable_id, Trackable.find(:all), :id, :subject_name %>
+			</td>
+			<td class="hours">
+				<%= f.label :hours %>
+				<%= f.text_field :hours, :size => 4 %>
+			</td>
+		</tr>
+		<tr>
+			<td class="notes" colspan="2"><%= f.text_area :notes %></td>
+		</tr>
+	</table>
+	<p class="form_actions">
+		<button class="add_entry" type="submit">Add Entry</button>
+	</p>
+	<div id="link_to_extras">
+		<%= link_to_function("Show options") { |p| p['extras'].toggle; p['link_to_extras'].toggle } %>
+	</div>
+	<dl id="extras" class="form-fields">
+		<%= f.labeled_date_select :date %>
+		<div class="singleton">
+			<%= f.check_box :billable %>
+			<%= f.label :billable, "These hours are billable" %>
+		</div>
+		<%= f.labeled_currency_field :rate_in_dollars %>
+	</dl>
+</div>
+
+<% end %>

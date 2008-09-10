@@ -22,4 +22,8 @@ class Client < ActiveRecord::Base
     "[#{name}]"
   end
   
+  def <=>(other)
+    self.name <=> other.name
+  end
+  
 end
