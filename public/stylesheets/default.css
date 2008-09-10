@@ -3,11 +3,7 @@
 @import url(lib/baseline.css);
 @import url(lib/forms.css);
 
-body {
-}
-
 #container {
-	/*width: 740px;*/
 	margin: 40px;
 	background: #fff;
 }
@@ -61,9 +57,6 @@ body {
 }
 
 /* @end */
-
-
-
 
 
 .entry-form label {
@@ -252,4 +245,3 @@ table.st-log .header th {
 .a-delete {
 	background-image: url(../images/icons/cham/trash.gif);
 }
-
