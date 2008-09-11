@@ -1,0 +1,13 @@
+<div id="overlay" class="modal">&nbsp;</div>
+<div id="hd"><div class="ln container clearfix">
+	<h1><%= link_to "TickTock", root_path %></h1>
+	
+	<ul id="main-navs">
+		<%= nav_item "Log", journal_entries_path, :time_entries %>
+	</ul>
+
+	<div id="inline_entry" class="modal"><div class="ln">
+	<%= render :partial => "/time_entries/inline_form" %>
+	</div></div>
+
+</div></div>

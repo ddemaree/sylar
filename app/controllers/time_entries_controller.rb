@@ -26,9 +26,22 @@ class TimeEntriesController < ApplicationController
         redirect_to :action => 'edit', :id => @journal_entry
       }
       format.js {
-        render :action => "refresh.rjs"
+        #render :action => "refresh.rjs"
       }
     end
+  rescue ActiveRecord::RecordInvalid
+    
+    respond_to do |format|
+      format.html {
+        render :action => "edit"
+      }
+      format.js {
+        #render :text => "Validation failed, need to do something here"
+        #render :partial => "inline_form", :layout => "errors"
+        render :action => "create", :layout => false, :status => 404
+      }
+    end
+    
   end
   
   def update

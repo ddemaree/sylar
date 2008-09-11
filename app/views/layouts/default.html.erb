@@ -4,20 +4,23 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>&#x265E; Sylar <%= @page_title || "Time Tracking" %></title>
+	<title>TickTock <%= @page_title || "Time Tracking" %></title>
 	<%= stylesheet_link_tag "default", "calendar_date_select" %>
+	<%= javascript_include_tag "jquery" %>
+	<script type="text/javascript" charset="utf-8">
+		var $jq = jQuery.noConflict();
+	</script>
 	<%= javascript_include_tag :defaults, "calendar_date", "calendar_date_select" %>
 </head>
 <body>
-<div id="container">
-	<div class="hd">
-		<h1><%= link_to "Sylar Time Tracker", root_path %></h1>
-
-		<%= link_to "New entry", new_journal_entry_path %>
-	</div>
-	<div class="bd">
+<div id="canvas">
+	<%= render :partial => "/layouts/header" %>
+	<div id="bd" class="container">
 		<%= yield :layout %>
 	</div>
+	<div id="toolbar"><div class="ln container">
+		<%= link_to "Add entry", new_journal_entry_path, :id => "add_entry_link" %>
+	</div></div>
 </div>
 </body>
 </html>
