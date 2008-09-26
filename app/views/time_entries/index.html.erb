@@ -45,6 +45,7 @@
 </tr>
 </table>
 <%- else -%>
+
 <% group_by_param(@journal_entries).each do |header, hash| %>
 <div class="st-log-section">
 	<div class="hd">
@@ -71,8 +72,8 @@
 
 		<tr class="summary">
 			<th class="notes" scope="row">Totals</th>
-			<td class="num hours"><%= entries.collect(&:hours).sum %></td>
-			<td class="num revenue"><%= number_to_currency entries.collect(&:revenue_in_dollars).sum %></td>
+			<td class="num hours"><%= entries.hours %></td>
+			<td class="num revenue"><%= number_to_currency entries.revenue_in_dollars %></td>
 			<td class="actions spacer">&nbsp;</td>
 		</tr>
 		</table>

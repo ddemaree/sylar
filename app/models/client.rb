@@ -27,4 +27,14 @@ class Client < ActiveRecord::Base
     self.name <=> other.name
   end
   
+  def to_json(*args)
+    {
+      :name => name,
+      :id   => id,
+      :rate => rate,
+      :trackable_id => trackable.id,
+      :trackables => trackables.select { |t| t.subject_type != "Client" }
+    }.to_json
+  end
+  
 end

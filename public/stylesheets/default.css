@@ -388,3 +388,40 @@ table.st-log .header th {
 .a-delete {
 	background-image: url(../images/icons/cham/trash.gif);
 }
+
+#pick_pock hr {
+	clear: both;
+	border: 0;
+	height: 1px;
+}
+
+.pickbox {
+	width: 200px;
+	height: 180px;
+	overflow: auto;
+	border: 1px solid #d4d4d4;
+	float: left;
+	margin-right: 4px;
+}
+
+.pickbox > div {
+	border-bottom: 1px solid #d4d4d4;
+	padding: 4px 5px;
+	overflow: hidden;
+	white-space: nowrap;
+	color: #888;
+}
+
+.pickbox .hover {
+	background: #fafafa;
+}
+
+.pickbox .selectedclient {
+	background: #ffc;
+}
+
+.pickbox .selected {
+	background: #ffa;
+	color: #000;
+	font-weight: bold;
+}

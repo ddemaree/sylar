@@ -6,21 +6,37 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>TickTock <%= @page_title || "Time Tracking" %></title>
 	<%= stylesheet_link_tag "default", "calendar_date_select" %>
-	<%= javascript_include_tag "jquery" %>
+	<%= javascript_include_tag "jquery","jquery.autocomplete.js" %>
 	<script type="text/javascript" charset="utf-8">
 		var $jq = jQuery.noConflict();
 	</script>
-	<%= javascript_include_tag :defaults, "calendar_date", "calendar_date_select" %>
+	<%= javascript_include_tag "prototype","calendar_date", "calendar_date_select", :cache => "prototype_plus" %>
+	<%= javascript_include_tag "application" %>
+	
 </head>
 <body>
 <div id="canvas">
 	<%= render :partial => "/layouts/header" %>
+	
+	<% if breadcrumbs.length >= 2 %>
+	<div id="crumbs" class="clearfix">
+		<ul class="clearfix nolist">
+		<% breadcrumbs.each do |crumb| %>
+		<% content_tag :li, :class => %{crumb #{"root" if crumb == breadcrumbs.first} #{"crumb-divide-last" if crumb == breadcrumbs[breadcrumbs.length - 2]}}.strip, :id => ("current" if crumb == breadcrumbs.last) do %>
+		<% if crumb == breadcrumbs.last %>
+			<%= content_tag :span, crumb.first, :class => "crumb_name" %>
+		<% else %>
+			<%= link_to crumb.first, crumb.last %>
+		<% end %>	
+		<% end %>
+		<% end %>
+		</ul>
+	</div>
+	<% end %>
+	
 	<div id="bd" class="container">
 		<%= yield :layout %>
 	</div>
-	<div id="toolbar"><div class="ln container">
-		<%= link_to "Add entry", new_journal_entry_path, :id => "add_entry_link" %>
-	</div></div>
 </div>
 </body>
 </html>

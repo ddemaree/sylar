@@ -1,18 +1,28 @@
 
 
 <% form_for @journal_entry, :html => {:class => "entry-form"} do |f| %>
+<input type="hidden" id="client_id" name="journal_entry[client_id]" />
+<input type="hidden" id="trackable_id" name="journal_entry[trackable_id]" />
+<div id="pick_pock">
+	<h2>New entry for <span></span></h2>
+	<div id="client_picker" class="pickbox"></div>
+	<div id="trackable_picker" class="pickbox"></div>
+	<hr>
+</div>
+
 <div class="je-calendar">
 	<%= f.label :date %>
-	<%= f.calendar_date_select :date %>
+	<%# f.calendar_date_select :date %>
+	<%= f.date_select :date %>
 </div>
 <div class="je-right">
-	<p class="form-field">
-		<%= f.label :trackable_id, "Client/Project" %>	
-		<select name="journal_entry[trackable_id]" id="journal_entry_trackable_id">
-		<option></option>
-		<%= option_groups_from_collection_for_select Client.active, :trackables, :name, :id, :subject_name, @journal_entry.trackable_id %>
-		</select>
-	</p>
+	<!-- <p class="form-field">
+			<%= f.label :trackable_id, "Client/Project" %>	
+			<select name="journal_entry[trackable_id]" id="journal_entry_trackable_id">
+			<option></option>
+			<%= option_groups_from_collection_for_select Client.active, :trackables, :name, :id, :subject_name, @journal_entry.trackable_id %>
+			</select>
+		</p> -->
 
 	<p class="form-field">
 		<%= f.label :hours %>
@@ -21,7 +31,7 @@
 
 	<p class="form-field">
 		<%= f.label :rate_in_dollars %>
-		<%= f.currency_field :rate_in_dollars %>
+		<%= f.text_field :rate_in_dollars, :id => "rate" %>
 	</p>
 	
 	<div class="je-notes">
@@ -37,3 +47,93 @@
 	<button type="submit">Add entry</button>
 </p>
 <% end %>
+
+
+
+<script type="text/javascript" charset="utf-8">
+clientObjs = eval('<%= escape_javascript(Client.active.to_json(:include => :trackables)) %>')
+
+var selectedRow = null;
+var clientName  = '';
+var trackableName = '';
+
+function findTrackablesForProject(clientId){
+	clientId = Number(clientId);
+	trackables = false;
+	clientObjs.each(function(clientObj){
+		if(clientId == clientObj.id){
+			trackables = clientObj.trackables;
+		}
+	});
+	return trackables;
+}
+
+doRowSelect = function(){
+	t_id = $jq(this).attr("trackableid");
+	$jq('#trackable_id').val(t_id);
+	$jq('.pickbox div').removeClass('selected')
+	$jq(this).addClass('selected')
+	$jq("#pick_pock h2 span").html($jq(this).attr("subjectname"))
+	
+	rate_in_dollars = (Number($jq(this).attr("rate")) / 100).toFixed(2)
+	
+	$jq("#rate").val(rate_in_dollars)
+	
+	// If client
+	if($jq(this).attr("clientid")){
+		$jq('.pickbox div').removeClass('selectedclient')
+		$jq(this).addClass('selectedclient')
+		
+		selectedRow = $jq(this).attr("clientid");
+		$jq('#client_id').val(selectedRow);
+		$jq("#trackable_picker").html("")
+		
+		trackables = findTrackablesForProject(selectedRow);
+		if(trackables){
+			populateTrackables(trackables)
+		}
+	}
+}
+
+function addRowMagic(rowElem){
+	rowElem.hover(function(){
+		$jq(this).addClass('hover')
+	},
+	function(){
+		$jq(this).removeClass('hover')
+	})
+	
+	rowElem.click(doRowSelect)
+}
+
+function populateTrackables(rows){
+	rows.each(function(row){
+		if(row.subject_type == "Client") return;
+		
+		rowElem = $jq(document.createElement("div"))
+		rowElem.html(row.subject_name)
+		rowElem.attr("trackableid", row.id);
+		rowElem.attr("subjectname", row.subject_name);
+		rowElem.attr("rate",row.rate);
+		
+		addRowMagic(rowElem);
+
+		$jq("#trackable_picker").append(rowElem);
+	})
+}
+
+clientObjs.each(function(clientObj){
+	client = clientObj
+	rowElem = $jq(document.createElement("div"))
+	rowElem.html(client.name)
+	rowElem.attr("clientid", client.id);
+	rowElem.attr("trackableid", client.trackable_id);
+	rowElem.attr("subjectname", client.name);
+	rowElem.attr("rate",client.rate);
+	
+	addRowMagic(rowElem);
+	
+	$jq("#client_picker").append(rowElem);
+})
+
+</script>

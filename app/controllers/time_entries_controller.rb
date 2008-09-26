@@ -3,8 +3,16 @@ class TimeEntriesController < ApplicationController
   
   before_filter :remember_view_setting
   
+  def import
+    
+  end
+  
+  def handle_import
+    @importer = JournalEntry::Importer.from_file(params[:uploaded_data])
+  end
+  
   def index
-    @journal_entries ||= JournalEntry.by_month(start_date_for_current_request)
+    @journal_entries ||= JournalEntry.by_month(start_date_for_current_request).find(:all)
   end
   
   def new

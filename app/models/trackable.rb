@@ -28,4 +28,13 @@ class Trackable < ActiveRecord::Base
     end
   end
   
+  def to_json(*args)
+    logger.info(args.inspect)
+    {
+      :subject_name => subject_name,
+      :rate => rate,
+      :id => id
+    }.to_json
+  end
+  
 end

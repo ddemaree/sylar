@@ -1,6 +1,3 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
-
 Fields = {
 	observeCurrencyFields: function(){			
 		$$('input.currency').each(function(elem){
@@ -89,7 +86,8 @@ $jq(document).ready(function(){
 			data: $jq(this).serialize(),
 			dataType: "html",
 			success: function(data, responseType){
-				alert("Succeeded!");
+				//alert("Succeeded!");
+				$jq(this).reset();
 			},
 			error: function(data, rT){
 				alert("Failed! " + data.responseText);

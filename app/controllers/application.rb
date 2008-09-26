@@ -3,6 +3,8 @@
 
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
+  include CrumbSaver
+  
   layout 'default'
   helper :all
   protect_from_forgery

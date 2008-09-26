@@ -20,6 +20,16 @@ class JournalEntry < ActiveRecord::Base
   
   named_scope :by_month, lambda { |date| { :conditions => ["date BETWEEN ? AND ?", date.to_date.beginning_of_month, date.to_date.end_of_month] } }
   
+  # Override find to return a JE collection, not an array
+  class << self
+    def find_with_je_collation(*args)
+      JournalEntry::Collection.create do |coll|
+        coll.replace find_without_je_collation(*args)
+      end
+    end
+    alias_method_chain :find, :je_collation
+  end
+  
   def self.grouped_by_day(date=Date.today)
     entries = by_month(date).group_by(&:date)
     

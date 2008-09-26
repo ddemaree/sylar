@@ -9,11 +9,15 @@
 	<tr class="header_row">
 		<th>Client</th>
 		<th>Contact</th>
+		<th>Hourly Rate</th>
+		<th>Active</th>
 		<th>&nbsp;</th>
 	</tr>
 	<% content_tags_for :tr, @clients do |client| %>
 		<td><%= link_to client, [:edit, client], :class => "item client" %></td>
 		<td><%= mail_to client.contact_email, client.contact_name %></td>
+		<td><%= number_to_currency client.rate_in_dollars %></td>
+		<td><%= client.active %></td>
 		<td class="actions">
 			<%= link_to "Edit", [:edit, client], :class => "action edit" %>
 		</td>

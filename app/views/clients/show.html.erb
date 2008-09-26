@@ -1,0 +1,22 @@
+<div class="titlebar">
+	<p class="back"><%= link_to "&larr; Back to clients", clients_path %></p>
+	<h2><%= @client.new_record? ? "New" : "Edit" %> Client</h2>
+</div>
+<div class="main">
+	<%= error_messages_for :client %>
+	<% form_for @client do |f| %>
+		<% fieldset :dl => true do %>
+			<%= f.labeled_text_field_with_error :name, :label => "Client" %>
+			<%= f.labeled_text_field_with_error :contact_name %>
+			<%= f.labeled_text_field_with_error :contact_email %>
+			<%= f.labeled_currency_field :rate_in_dollars %>
+			<div class="singleton">
+				<%= f.check_box :active %>
+				<em>This client is active.</em> Uncheck this box to hide this client.
+			</div>
+		<% end %>
+		<p class="form_actions">
+			<button type="submit" class="save_changes">Save Changes</button>
+		</p>
+	<% end %>
+</div>

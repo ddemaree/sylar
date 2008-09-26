@@ -9,6 +9,11 @@ class ClientsController < ApplicationController
     render :action => 'edit'
   end
   
+  def show
+    @client = Client.find(params[:id])
+    breadcrumbs << [@client.name,client_path(@client)]
+  end
+  
   def create
     @client = Client.new(params[:client])
     @client.save!
@@ -17,7 +22,9 @@ class ClientsController < ApplicationController
   end
 
   def edit
-    @client = Client.find(params[:id])
+    #@client = Client.find(params[:id])
+    show
+    breadcrumbs << ["Edit Client",nil]
   end
   
   def update
@@ -25,6 +32,13 @@ class ClientsController < ApplicationController
     @client.update_attributes!(params[:client])
     flash[:message] = "The client '#{@client}' was successfully updated"
     redirect_to :action => 'edit', :id => @client
+  end
+  
+protected
+
+  def setup_breadcrumbs
+    super
+    breadcrumbs << ["Clients","/clients"]
   end
 
 end

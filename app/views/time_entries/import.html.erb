@@ -1,0 +1,6 @@
+<% form_tag "/time_entries/import", :method => :post, :multipart => true do %>
+	
+	<input type="file" name="uploaded_data" />
+	<button type="submit">Import data</button>
+	
+<% end %>
