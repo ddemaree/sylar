@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+practical_account:
+  name: Practical Creative & Code
+  timezone: Central Time (US & Canada)
+  subdomain: practical
+  business_type: yr base
+
+abc_account:
+  name: ABC Widgets
+  timezone: Pacific Time (US & Canada)
+  subdomain: abc
+  business_type: other

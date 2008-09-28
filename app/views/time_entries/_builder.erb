@@ -1,0 +1,30 @@
+<% fields_for entry do |f| %>
+<div class="je-calendar">
+	<%= f.hidden_field :client_id, :id => "je_client_id" %>
+	<%= f.hidden_field :trackable_id, :id => "je_trackable_id" %>
+	<%= f.hidden_field :date, :id => "jdate" %>
+	<script type="text/javascript" charset="utf-8">
+		clientObjs = eval('<%= escape_javascript(Client.active.to_json(:include => :trackables)) %>')
+		new ClientPicker("je_client_id","je_trackable_id",clientObjs)
+		pager = new DatePager('jdate')
+		</script>
+</div>
+<div class="je-right">
+
+	<p class="form-field">
+		<%= f.label :hours %>
+		<%= f.text_field :hours %>
+	</p>
+
+	<p class="form-field">
+		<%= f.label :rate_in_dollars %>
+		<%= f.text_field :rate_in_dollars, :id => "rate" %>
+	</p>
+	
+	<div class="je-notes">
+		<%= f.label :notes %>
+		<%= f.text_area :notes, :cols => 60, :rows => 5 %>
+	</div>
+</div>
+<hr style="clear:both" />	
+<% end %>

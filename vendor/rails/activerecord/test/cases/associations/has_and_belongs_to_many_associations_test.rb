@@ -253,7 +253,7 @@ class HasAndBelongsToManyAssociationsTest < ActiveRecord::TestCase
     assert !devel.projects.loaded?
 
     assert_equal devel.projects.last, proj
-    assert devel.projects.loaded?
+    assert !devel.projects.loaded?
 
     assert !proj.new_record?
     assert_equal Developer.find(1).projects.sort_by(&:id).last, proj  # prove join table is updated
@@ -636,6 +636,18 @@ class HasAndBelongsToManyAssociationsTest < ActiveRecord::TestCase
     assert_equal 3, Developer.find(:all, :include => {:projects => :developers}, :conditions => 'developers_projects_join.joined_on IS NOT NULL', :group => group.join(",")).size
   end
 
+  def test_find_grouped
+    all_posts_from_category1 = Post.find(:all, :conditions => "category_id = 1", :joins => :categories)
+    grouped_posts_of_category1 = Post.find(:all, :conditions => "category_id = 1", :group => "author_id", :select => 'count(posts.id) as posts_count', :joins => :categories)
+    assert_equal 4, all_posts_from_category1.size
+    assert_equal 1, grouped_posts_of_category1.size
+  end
+
+  def test_find_scoped_grouped
+    assert_equal 4, categories(:general).posts_gruoped_by_title.size
+    assert_equal 1, categories(:technology).posts_gruoped_by_title.size
+  end
+
   def test_get_ids
     assert_equal projects(:active_record, :action_controller).map(&:id).sort, developers(:david).project_ids.sort
     assert_equal [projects(:active_record).id], developers(:jamis).project_ids
@@ -725,5 +737,14 @@ class HasAndBelongsToManyAssociationsTest < ActiveRecord::TestCase
     # Extra parameter just to make sure we aren't falling back to
     # Array#count in Ruby >=1.8.7, which would raise an ArgumentError
     assert_nothing_raised { david.projects.count(:all, :conditions => '1=1') }
+  end
+
+  uses_mocha 'mocking Post.transaction' do
+    def test_association_proxy_transaction_method_starts_transaction_in_association_class
+      Post.expects(:transaction)
+      Category.find(:first).posts.transaction do
+        # nothing
+      end
+    end
   end
 end

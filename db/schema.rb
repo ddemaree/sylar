@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080820193950) do
+ActiveRecord::Schema.define(:version => 20080928222546) do
+
+  create_table "accounts", :force => true do |t|
+    t.string   "name"
+    t.string   "timezone"
+    t.string   "subdomain"
+    t.string   "business_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -89,8 +98,10 @@ ActiveRecord::Schema.define(:version => 20080820193950) do
     t.datetime "updated_at"
     t.string   "remember_token",            :limit => 40
     t.datetime "remember_token_expires_at"
+    t.integer  "account_id"
   end
 
+  add_index "users", ["account_id"], :name => "index_users_on_account_id"
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
 end

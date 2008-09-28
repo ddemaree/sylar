@@ -23,9 +23,14 @@ class JournalEntry < ActiveRecord::Base
   # Override find to return a JE collection, not an array
   class << self
     def find_with_je_collation(*args)
-      JournalEntry::Collection.create do |coll|
-        coll.replace find_without_je_collation(*args)
-      end
+      array_or_whatever = find_without_je_collation(*args)
+      
+      array_or_whatever =
+        JournalEntry::Collection.create do |coll|
+          coll.replace(array_or_whatever)
+        end if array_or_whatever.is_a?(Array)
+      
+      return array_or_whatever
     end
     alias_method_chain :find, :je_collation
   end

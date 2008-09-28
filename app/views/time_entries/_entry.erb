@@ -1,0 +1,11 @@
+<% div_for entry do %>
+<span class="trackable"><%= entry.trackable %></span>	
+<span class="date"><%= entry.date %></span>
+<span class="notes"><%= truncate entry.notes, 80 %>&nbsp;</span>
+<span class="hours"><%= entry.hours %></span>
+
+<div class="actions">
+	<%= link_to "Edit", entry, :class => "editor" %>
+	<%= link_to_remote "Delete", {:url => entry, :method => :delete}, :class => "deleter" %>
+</div>
+<% end %>

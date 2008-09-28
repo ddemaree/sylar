@@ -6,12 +6,16 @@ class ActiveRecordValidationsI18nTests < Test::Unit::TestCase
   def setup
     reset_callbacks Topic
     @topic = Topic.new
+    @old_load_path, @old_backend = I18n.load_path, I18n.backend
+    I18n.load_path.clear
+    I18n.backend = I18n::Backend::Simple.new
     I18n.backend.store_translations('en-US', :activerecord => {:errors => {:messages => {:custom => nil}}})
   end
 
   def teardown
     reset_callbacks Topic
-    I18n.load_translations File.dirname(__FILE__) + '/../../lib/active_record/locale/en-US.yml'
+    I18n.load_path.replace @old_load_path
+    I18n.backend = @old_backend
   end
 
   def unique_topic
@@ -37,6 +41,32 @@ class ActiveRecordValidationsI18nTests < Test::Unit::TestCase
   def test_default_error_messages_is_deprecated
     assert_deprecated('ActiveRecord::Errors.default_error_messages') do
       ActiveRecord::Errors.default_error_messages
+    end
+  end
+
+  def test_percent_s_interpolation_syntax_in_error_messages_still_works
+    ActiveSupport::Deprecation.silence do
+      result = I18n.t :does_not_exist, :default => "%s interpolation syntax is deprecated", :value => 'this'
+      assert_equal result, "this interpolation syntax is deprecated"
+    end
+  end
+
+  def test_percent_s_interpolation_syntax_in_error_messages_is_deprecated
+    assert_deprecated('using %s in messages') do
+      I18n.t :does_not_exist, :default => "%s interpolation syntax is deprected", :value => 'this'
+    end
+  end
+
+  def test_percent_d_interpolation_syntax_in_error_messages_still_works
+    ActiveSupport::Deprecation.silence do
+      result = I18n.t :does_not_exist, :default => "%d interpolation syntaxes are deprecated", :count => 2
+      assert_equal result, "2 interpolation syntaxes are deprecated"
+    end
+  end
+
+  def test_percent_d_interpolation_syntax_in_error_messages_is_deprecated
+    assert_deprecated('using %d in messages') do
+      I18n.t :does_not_exist, :default => "%d interpolation syntaxes are deprected", :count => 2
     end
   end
 

@@ -1,0 +1,32 @@
+<% form_for @account do |f| %>
+<div class="signup_form">
+	<div class="account_info">
+		<dl class="form-fields left-labels">
+			<dt>Company name</dt>
+			<dd><%= f.text_field :name %></dd>
+			
+			<% fields_for :user do |u_f| %>
+			<dt>Login name</dt>
+			<dd><%= u_f.text_field :login %></dd>
+			
+			<dt>Password</dt>
+			<dd><%= u_f.password_field :password %></dd>
+			<dd><%= u_f.password_field :password_confirmation %></dd>
+			<% end %>
+			
+		</dl>
+	</div>
+	
+	<div class="choose_url">
+		<h4>Choose your personalized TickTock URL</h4>
+		<p>
+			http://<%= f.text_field :subdomain %>.ticktockapp.com/
+		</p>
+		<p class="info">
+			Account domain names should be 3-20 characters long. You can use letters (A-Z, a-z), numbers (0-9), dashes (-) and underscores (_).
+		</p>
+	</div>
+	
+</div>
+
+<% end %>

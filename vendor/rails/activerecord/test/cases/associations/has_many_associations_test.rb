@@ -248,6 +248,13 @@ class HasManyAssociationsTest < ActiveRecord::TestCase
     assert_equal 1, grouped_clients_of_firm1.size
   end
 
+  def test_find_scoped_grouped
+    assert_equal 1, companies(:first_firm).clients_grouped_by_firm_id.size
+    assert_equal 1, companies(:first_firm).clients_grouped_by_firm_id.length
+    assert_equal 2, companies(:first_firm).clients_grouped_by_name.size
+    assert_equal 2, companies(:first_firm).clients_grouped_by_name.length
+  end
+
   def test_adding
     force_signal37_to_load_all_clients_of_firm
     natural = Client.new("name" => "Natural Company")
@@ -1002,6 +1009,19 @@ class HasManyAssociationsTest < ActiveRecord::TestCase
     assert firm.clients.loaded?
   end
 
+  def test_calling_first_or_last_on_existing_record_with_create_should_not_load_association
+    firm = companies(:first_firm)
+    firm.clients.create(:name => 'Foo')
+    assert !firm.clients.loaded?
+
+    assert_queries 2 do
+      firm.clients.first
+      firm.clients.last
+    end
+
+    assert !firm.clients.loaded?
+  end
+
   def test_calling_first_or_last_on_new_record_should_not_run_queries
     firm = Firm.new
 
@@ -1049,6 +1069,15 @@ class HasManyAssociationsTest < ActiveRecord::TestCase
 
   ensure
     ActiveRecord::Base.store_full_sti_class = old
+  end
+
+  uses_mocha 'mocking Comment.transaction' do
+    def test_association_proxy_transaction_method_starts_transaction_in_association_class
+      Comment.expects(:transaction)
+      Post.find(:first).comments.transaction do
+        # nothing
+      end
+    end
   end
 
 end

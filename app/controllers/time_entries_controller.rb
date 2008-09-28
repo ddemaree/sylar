@@ -17,7 +17,7 @@ class TimeEntriesController < ApplicationController
   
   def new
     @journal_entry = JournalEntry.new(params[:journal_entry])
-    render :action => "edit"
+    #render :action => "edit"
   end
   
   def edit
@@ -34,7 +34,12 @@ class TimeEntriesController < ApplicationController
         redirect_to :action => 'edit', :id => @journal_entry
       }
       format.js {
-        #render :action => "refresh.rjs"
+        render :update do |page|
+          page["formErrors"].update ""
+          page["formErrors"].hide
+          #page["recent_entries"].insert_html :top, :partial => 'entry', :object => @journal_entry
+          page.insert_html :top, "recent_entries", :partial => 'entry', :object => @journal_entry
+        end
       }
     end
   rescue ActiveRecord::RecordInvalid
@@ -44,9 +49,10 @@ class TimeEntriesController < ApplicationController
         render :action => "edit"
       }
       format.js {
-        #render :text => "Validation failed, need to do something here"
-        #render :partial => "inline_form", :layout => "errors"
-        render :action => "create", :layout => false, :status => 404
+        render :update do |page|
+          page["formErrors"].update error_messages_for(:journal_entry)
+          page["formErrors"].show
+        end
       }
     end
     
@@ -76,7 +82,9 @@ class TimeEntriesController < ApplicationController
         redirect_to :action => 'index'
       }
       format.js {
-        render :action => "refresh.rjs"
+        render :update do |page|
+          page[@journal_entry].remove
+        end
       }
     end
   end

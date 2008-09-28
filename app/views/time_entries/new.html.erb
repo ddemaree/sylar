@@ -1,0 +1,14 @@
+<div id="formErrors" style="display:none"></div>
+<% form_remote_for @journal_entry do |f| %>
+
+<%= render :partial => "builder", :locals => {:entry => @journal_entry} %>
+
+<p class="form-action">
+	<button type="submit">Add new entry</button>
+</p>	
+<% end %>
+
+<h2>Recent entries</h2>
+<div id="recent_entries">
+<%= render :partial => 'entry', :collection => JournalEntry.find(:all, :order => "created_at DESC", :limit => 10) %>
+</div>

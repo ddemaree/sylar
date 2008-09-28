@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>TickTock <%= @page_title || "Time Tracking" %></title>
+	<%= stylesheet_link_tag "default", "public" %>
+	<%= javascript_include_tag "prototype" %>
+	<%= javascript_include_tag "application" %>
+</head>
+<body class="public">
+<div id="canvas">
+	<div id="bd" class="container">
+		<%= yield :layout %>
+	</div>
+</div>
+</body>
+</html>

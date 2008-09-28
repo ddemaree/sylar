@@ -4,11 +4,13 @@
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   include CrumbSaver
+  include AccountLocation
   
   layout 'default'
   helper :all
   protect_from_forgery
   
+  before_filter :find_account
   before_filter :login_required
   before_filter :set_current_user
   
@@ -16,6 +18,25 @@ class ApplicationController < ActionController::Base
     flash.now[:alert] = "There appears to be a problem."
     render :action => "edit"
   end
+  
+protected
+
+  def default_account_subdomain
+    @current_account.subdomain
+  end
+  
+  def find_account
+    return true if Account.public_subdomain?(account_subdomain)
+    
+    @current_account = Account.find_by_subdomain!(account_subdomain)
+  rescue Account::NotFound
+    redirect_to new_account_url(:host => account_host("www"))
+  end
+  
+  def current_account
+    @current_account = Account.find_by_subdomain(account_subdomain)
+  end
+  helper_method :current_account
   
   def set_current_user
     JournalEntry.current_user = current_user if logged_in?

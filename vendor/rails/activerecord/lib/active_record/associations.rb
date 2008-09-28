@@ -739,9 +739,6 @@ module ActiveRecord
       #   If true, all the associated objects are readonly through the association.
       # [:validate]
       #   If false, don't validate the associated objects when saving the parent object. true by default.
-      # [:accessible]
-      #   Mass assignment is allowed for this assocation (similar to <tt>ActiveRecord::Base#attr_accessible</tt>).
-
       # Option examples:
       #   has_many :comments, :order => "posted_on"
       #   has_many :comments, :include => :author
@@ -855,8 +852,6 @@ module ActiveRecord
       #   If true, the associated object is readonly through the association.
       # [:validate]
       #   If false, don't validate the associated object when saving the parent object. +false+ by default.
-      # [:accessible]
-      #   Mass assignment is allowed for this assocation (similar to <tt>ActiveRecord::Base#attr_accessible</tt>).
       #
       # Option examples:
       #   has_one :credit_card, :dependent => :destroy  # destroys the associated credit card
@@ -973,8 +968,6 @@ module ActiveRecord
       #   If true, the associated object is readonly through the association.
       # [:validate]
       #   If false, don't validate the associated objects when saving the parent object. +false+ by default.
-      # [:accessible]
-      #   Mass assignment is allowed for this assocation (similar to <tt>ActiveRecord::Base#attr_accessible</tt>).
       #
       # Option examples:
       #   belongs_to :firm, :foreign_key => "client_of"
@@ -1033,7 +1026,7 @@ module ActiveRecord
         # Create the callbacks to update counter cache
         if options[:counter_cache]
           cache_column = options[:counter_cache] == true ?
-            "#{self.to_s.underscore.pluralize}_count" :
+            "#{self.to_s.demodulize.underscore.pluralize}_count" :
             options[:counter_cache]
 
           method_name = "belongs_to_counter_cache_after_create_for_#{reflection.name}".to_sym
@@ -1190,8 +1183,6 @@ module ActiveRecord
       #   If true, all the associated objects are readonly through the association.
       # [:validate]
       #   If false, don't validate the associated objects when saving the parent object. +true+ by default.
-      # [:accessible<]
-      #   Mass assignment is allowed for this assocation (similar to <tt>ActiveRecord::Base#attr_accessible</tt>).
       #
       # Option examples:
       #   has_and_belongs_to_many :projects
@@ -1246,7 +1237,7 @@ module ActiveRecord
 
             association = instance_variable_get(ivar) if instance_variable_defined?(ivar)
 
-            if association.nil? || force_reload
+            if association.nil? || !association.loaded? || force_reload
               association = association_proxy_class.new(self, reflection)
               retval = association.reload
               if retval.nil? and association_proxy_class == BelongsToAssociation
@@ -1266,14 +1257,23 @@ module ActiveRecord
               association = association_proxy_class.new(self, reflection)
             end
 
-            new_value = reflection.build_association(new_value) if reflection.options[:accessible] && new_value.is_a?(Hash)
-
             if association_proxy_class == HasOneThroughAssociation
               association.create_through_record(new_value)
               self.send(reflection.name, new_value)
             else
               association.replace(new_value)
               instance_variable_set(ivar, new_value.nil? ? nil : association)
+            end
+          end
+
+          if association_proxy_class == BelongsToAssociation
+            define_method("#{reflection.primary_key_name}=") do |target_id|
+              if instance_variable_defined?(ivar)
+                if association = instance_variable_get(ivar)
+                  association.reset
+                end
+              end
+              write_attribute(reflection.primary_key_name, target_id)
             end
           end
 
@@ -1428,15 +1428,23 @@ module ActiveRecord
           []
         end
 
+        # Creates before_destroy callback methods that nullify, delete or destroy
+        # has_many associated objects, according to the defined :dependent rule.
+        #
         # See HasManyAssociation#delete_records.  Dependent associations
         # delete children, otherwise foreign key is set to NULL.
-        def configure_dependency_for_has_many(reflection)
+        #
+        # The +extra_conditions+ parameter, which is not used within the main
+        # Active Record codebase, is meant to allow plugins to define extra
+        # finder conditions.
+        def configure_dependency_for_has_many(reflection, extra_conditions = nil)
           if reflection.options.include?(:dependent)
             # Add polymorphic type if the :as option is present
             dependent_conditions = []
             dependent_conditions << "#{reflection.primary_key_name} = \#{record.quoted_id}"
             dependent_conditions << "#{reflection.options[:as]}_type = '#{base_class.name}'" if reflection.options[:as]
             dependent_conditions << sanitize_sql(reflection.options[:conditions]) if reflection.options[:conditions]
+            dependent_conditions << extra_conditions if extra_conditions
             dependent_conditions = dependent_conditions.collect {|where| "(#{where})" }.join(" AND ")
 
             case reflection.options[:dependent]
@@ -1447,9 +1455,24 @@ module ActiveRecord
                 end
                 before_destroy method_name
               when :delete_all
-                module_eval "before_destroy { |record| #{reflection.class_name}.delete_all(%(#{dependent_conditions})) }"
+                module_eval %Q{
+                  before_destroy do |record|
+                    delete_all_has_many_dependencies(record,
+                      "#{reflection.name}",
+                      #{reflection.class_name},
+                      "#{dependent_conditions}")
+                  end
+                }
               when :nullify
-                module_eval "before_destroy { |record| #{reflection.class_name}.update_all(%(#{reflection.primary_key_name} = NULL),  %(#{dependent_conditions})) }"
+                module_eval %Q{
+                  before_destroy do |record|
+                    nullify_has_many_dependencies(record,
+                      "#{reflection.name}",
+                      #{reflection.class_name},
+                      "#{reflection.primary_key_name}",
+                      "#{dependent_conditions}")
+                  end
+                }
               else
                 raise ArgumentError, "The :dependent option expects either :destroy, :delete_all, or :nullify (#{reflection.options[:dependent].inspect})"
             end
@@ -1470,7 +1493,7 @@ module ActiveRecord
                 method_name = "has_one_dependent_delete_for_#{reflection.name}".to_sym
                 define_method(method_name) do
                   association = send(reflection.name)
-                  association.class.delete(association.id) unless association.nil?
+                  association.delete unless association.nil?
                 end
                 before_destroy method_name
               when :nullify
@@ -1500,13 +1523,21 @@ module ActiveRecord
                 method_name = "belongs_to_dependent_delete_for_#{reflection.name}".to_sym
                 define_method(method_name) do
                   association = send(reflection.name)
-                  association.class.delete(association.id) unless association.nil?
+                  association.delete unless association.nil?
                 end
                 before_destroy method_name
               else
                 raise ArgumentError, "The :dependent option expects either :destroy or :delete (#{reflection.options[:dependent].inspect})"
             end
           end
+        end
+
+        def delete_all_has_many_dependencies(record, reflection_name, association_class, dependent_conditions)
+          association_class.delete_all(dependent_conditions)
+        end
+
+        def nullify_has_many_dependencies(record, reflection_name, association_class, primary_key_name, dependent_conditions)
+          association_class.update_all("#{primary_key_name} = NULL", dependent_conditions)
         end
 
         mattr_accessor :valid_keys_for_has_many_association
@@ -1519,12 +1550,11 @@ module ActiveRecord
           :finder_sql, :counter_sql,
           :before_add, :after_add, :before_remove, :after_remove,
           :extend, :readonly,
-          :validate, :accessible
+          :validate
         ]
 
         def create_has_many_reflection(association_id, options, &extension)
           options.assert_valid_keys(valid_keys_for_has_many_association)
-
           options[:extend] = create_extension_modules(association_id, extension, options[:extend])
 
           create_reflection(:has_many, association_id, options, self)
@@ -1534,12 +1564,11 @@ module ActiveRecord
         @@valid_keys_for_has_one_association = [
           :class_name, :foreign_key, :remote, :select, :conditions, :order,
           :include, :dependent, :counter_cache, :extend, :as, :readonly,
-          :validate, :primary_key, :accessible
+          :validate, :primary_key
         ]
 
         def create_has_one_reflection(association_id, options)
           options.assert_valid_keys(valid_keys_for_has_one_association)
-
           create_reflection(:has_one, association_id, options, self)
         end
 
@@ -1554,12 +1583,11 @@ module ActiveRecord
         @@valid_keys_for_belongs_to_association = [
           :class_name, :foreign_key, :foreign_type, :remote, :select, :conditions,
           :include, :dependent, :counter_cache, :extend, :polymorphic, :readonly,
-          :validate, :accessible
+          :validate
         ]
 
         def create_belongs_to_reflection(association_id, options)
           options.assert_valid_keys(valid_keys_for_belongs_to_association)
-
           reflection = create_reflection(:belongs_to, association_id, options, self)
 
           if options[:polymorphic]
@@ -1577,7 +1605,7 @@ module ActiveRecord
             :finder_sql, :delete_sql, :insert_sql,
             :before_add, :after_add, :before_remove, :after_remove,
             :extend, :readonly,
-            :validate, :accessible
+            :validate
           )
 
           options[:extend] = create_extension_modules(association_id, extension, options[:extend])
@@ -1758,12 +1786,12 @@ module ActiveRecord
 
         def create_extension_modules(association_id, block_extension, extensions)
           if block_extension
-            extension_module_name = "#{self.to_s}#{association_id.to_s.camelize}AssociationExtension"
+            extension_module_name = "#{self.to_s.demodulize}#{association_id.to_s.camelize}AssociationExtension"
 
             silence_warnings do
-              Object.const_set(extension_module_name, Module.new(&block_extension))
+              self.parent.const_set(extension_module_name, Module.new(&block_extension))
             end
-            Array(extensions).push(extension_module_name.constantize)
+            Array(extensions).push("#{self.parent}::#{extension_module_name}".constantize)
           else
             Array(extensions)
           end

@@ -43,6 +43,14 @@ var CalendarDate = Class.create({
   getMonthName: function() {
     return CalendarDate.MONTHS[this.month - 1];
   },
+
+	getDayName: function() {
+		return CalendarDate.WEEKDAYS[this.date.getUTCDay()];
+	},
+	
+	getShortDayName: function() {
+		return CalendarDate.SHORTWEEKS[this.date.getUTCDay()];
+	},
   
   toString: function() {
     return this.stringValue = this.stringValue ||
@@ -53,6 +61,7 @@ var CalendarDate = Class.create({
 Object.extend(CalendarDate, {
   MONTHS:   $w("January February March April May June July August September October November December"),
   WEEKDAYS: $w("Sunday Monday Tuesday Wednesday Thursday Friday Saturday"),
+	SHORTWEEKS: $w("Sun Mon Tue Wed Thu Fri Sat"),
   
   parse: function(date) {
     if (!(date || "").toString().strip()) {

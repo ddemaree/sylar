@@ -211,7 +211,7 @@
 
 .je-calendar {
 	float: left;
-	width: 220px;
+	width: 450px;
 	padding-bottom: 20px;
 	padding-top: 10px;
 }
@@ -389,7 +389,7 @@ table.st-log .header th {
 	background-image: url(../images/icons/cham/trash.gif);
 }
 
-#pick_pock hr {
+.pickpock hr {
 	clear: both;
 	border: 0;
 	height: 1px;
@@ -397,7 +397,7 @@ table.st-log .header th {
 
 .pickbox {
 	width: 200px;
-	height: 180px;
+	height: 134px;
 	overflow: auto;
 	border: 1px solid #d4d4d4;
 	float: left;
@@ -424,4 +424,151 @@ table.st-log .header th {
 	background: #ffa;
 	color: #000;
 	font-weight: bold;
+}
+
+#dpw {
+	position: relative;
+	background: #fff;
+	width: 420px;
+	margin-top: 10px;
+}
+
+#dpw ul,
+#dpw li {
+	list-style: none;
+}
+
+#dpw hr {
+	clear: both;
+	border: 0;
+	height: 1px;
+}
+
+#dpw li {
+	background: #fff;
+	padding: 3px 0;
+	border-right: 1px solid #e5e5e5;
+	color: #ccc;
+	width: 52px;
+	float: left;
+	text-align: center;
+}
+
+#dpw li strong {
+	display: block;
+	font-size: 16px;
+	font-weight: normal;
+	padding-top: 4px;
+}
+
+#dpw li span {
+	display: block;
+	font-size: 14px;
+	padding-bottom: 2px;
+}
+
+#dpw li.today {
+	background: #f0f8ff;
+	color: #bbb;
+}
+
+#dpw li.selected {
+	background: #ffa;
+	border-color: #ccc;
+	color: #ccc;
+}
+
+#dpw li.selected * {
+	color: #000;
+}
+
+#dpw .track {
+	border: 1px solid #d4d4d4;
+	background: #fff;
+	position: relative;
+	width: 370px;
+	height: 48px;
+	overflow: hidden;
+	white-space: nowrap;
+	
+	left: 23px;
+}
+
+#dpw .track ul {
+	width: 371px;
+}
+
+#dpw .pager a {
+	position: absolute;
+	top: 36px;
+	background: #f0f;
+	height: 24px;
+	width: 20px;
+}
+
+#dpw .pager a.left {
+	left: 0;
+}
+
+#dpw .pager a.right {
+	right: 0;
+}
+
+#dpw .title {
+	text-align: center;
+	padding-bottom: 4px;
+	color: #aaa;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+#dpw .title strong {
+	color: #333;
+	margin-left: 5px;
+}
+
+#recent_entries {
+	border-top: 2px solid #ccc;
+}
+
+#recent_entries .journal_entry {
+	border-bottom: 1px solid #ccc;
+	padding: 2px 0;
+	overflow: auto;
+	position: relative;
+}
+
+#recent_entries .journal_entry span {
+	width: 240px;
+	float: left;
+}
+
+#recent_entries .journal_entry span.date {
+	width: 100px;
+}
+
+#recent_entries .journal_entry span.notes {
+	width: 511px;
+}
+
+#recent_entries .journal_entry span.hours {
+	text-align: right;
+	width: 60px;
+}
+
+.journal_entry .actions {
+	position: absolute;
+	right: 0;
+}
+
+.journal_entry .actions a {
+	background: url(../images/icons/mini/trash.gif) no-repeat center center;
+	float: left;
+	width: 17px;
+	height: 17px;
+	text-indent: -9999px;
+}
+
+.journal_entry .actions a.editor {
+	background-image: url(../images/icons/mini/edit.gif);
 }
